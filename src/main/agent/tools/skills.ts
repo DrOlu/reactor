@@ -10,7 +10,7 @@ import { AgentProfile, PromptContext, ToolApprovalState } from '@common/types';
 
 import { ApprovalManager } from './approval-manager';
 
-import { AIDER_DESK_DIR } from '@/constants';
+import { REACTOR_DIR } from '@/constants';
 import { Task } from '@/task';
 
 type SkillLocation = 'global' | 'project';
@@ -110,8 +110,8 @@ export const createSkillsToolset = async (task: Task, profile: AgentProfile, pro
   const approvalManager = new ApprovalManager(task, profile);
 
   const generateActivateSkillDescription = async (): Promise<string> => {
-    const globalSkillsDir = path.join(homedir(), AIDER_DESK_DIR, SKILLS_DIR_NAME);
-    const projectSkillsDir = path.join(task.getProjectDir(), AIDER_DESK_DIR, SKILLS_DIR_NAME);
+    const globalSkillsDir = path.join(homedir(), REACTOR_DIR, SKILLS_DIR_NAME);
+    const projectSkillsDir = path.join(task.getProjectDir(), REACTOR_DIR, SKILLS_DIR_NAME);
 
     const [globalSkills, projectSkills] = await Promise.all([loadSkillsFromDir(globalSkillsDir, 'global'), loadSkillsFromDir(projectSkillsDir, 'project')]);
 
@@ -135,8 +135,8 @@ export const createSkillsToolset = async (task: Task, profile: AgentProfile, pro
         return `Activating skill denied by user. Reason: ${userInput}`;
       }
 
-      const globalSkillsDir = path.join(homedir(), AIDER_DESK_DIR, SKILLS_DIR_NAME);
-      const projectSkillsDir = path.join(task.getProjectDir(), AIDER_DESK_DIR, SKILLS_DIR_NAME);
+      const globalSkillsDir = path.join(homedir(), REACTOR_DIR, SKILLS_DIR_NAME);
+      const projectSkillsDir = path.join(task.getProjectDir(), REACTOR_DIR, SKILLS_DIR_NAME);
 
       const [globalSkills, projectSkills] = await Promise.all([loadSkillsFromDir(globalSkillsDir, 'global'), loadSkillsFromDir(projectSkillsDir, 'project')]);
 

@@ -5,7 +5,7 @@ import { existsSync } from 'fs';
 import { ConflictResolutionFileContext, MergeState, RebaseState, Worktree, WorktreeAheadCommits, WorktreeUncommittedFiles } from '@common/types';
 
 import { execWithShellPath, withLock } from '@/utils';
-import { AIDER_DESK_TASKS_DIR } from '@/constants';
+import { REACTOR_TASKS_DIR } from '@/constants';
 import logger from '@/logger';
 
 export class GitError extends Error {
@@ -53,7 +53,7 @@ interface RawCommitData {
 
 export class WorktreeManager {
   private getWorktreePath(projectPath: string, taskId: string): string {
-    return join(projectPath, AIDER_DESK_TASKS_DIR, taskId, 'worktree');
+    return join(projectPath, REACTOR_TASKS_DIR, taskId, 'worktree');
   }
 
   private async initializeWorktree(projectPath: string, taskId: string): Promise<void> {
@@ -1695,7 +1695,7 @@ export class WorktreeManager {
       worktrees,
     });
     for (const worktree of worktrees) {
-      if (worktree.path.startsWith(path.join(projectDir, AIDER_DESK_TASKS_DIR)) && worktree.prunable) {
+      if (worktree.path.startsWith(path.join(projectDir, REACTOR_TASKS_DIR)) && worktree.prunable) {
         try {
           logger.debug(`Pruning deleted worktree: ${worktree.path}`);
           await execWithShellPath(`git worktree remove ${worktree.path}`, {

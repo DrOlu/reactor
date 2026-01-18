@@ -181,7 +181,7 @@ export class McpManager {
 
     const client = new McpSdkClient(
       {
-        name: 'aider-desk-client',
+        name: 'reactor-client',
         version: '1.0.0',
       },
       {

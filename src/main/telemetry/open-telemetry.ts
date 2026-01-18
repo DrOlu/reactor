@@ -13,7 +13,7 @@ if (traceExporter) {
   logger.info('Initializing OpenTelemetry...');
 
   const sdk = new NodeSDK({
-    serviceName: 'aider-desk',
+    serviceName: 'reactor',
     traceExporter,
     instrumentations: [getNodeAutoInstrumentations()],
   });

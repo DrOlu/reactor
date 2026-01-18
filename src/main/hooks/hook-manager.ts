@@ -9,7 +9,7 @@ import { HookContext, HookContextImpl } from './hook-context';
 
 import { Task } from '@/task/task';
 import { Project } from '@/project/project';
-import { AIDER_DESK_HOOKS_DIR, AIDER_DESK_GLOBAL_HOOKS_DIR } from '@/constants';
+import { REACTOR_HOOKS_DIR, REACTOR_GLOBAL_HOOKS_DIR } from '@/constants';
 import logger from '@/logger';
 import { ResponseMessage } from '@/messages';
 
@@ -56,7 +56,7 @@ export class HookManager {
     if (this.globalInitialized) {
       return;
     }
-    this.globalHooks = await this.loadHooksFromDir(AIDER_DESK_GLOBAL_HOOKS_DIR);
+    this.globalHooks = await this.loadHooksFromDir(REACTOR_GLOBAL_HOOKS_DIR);
     await this.setupGlobalWatcher();
     this.globalInitialized = true;
   }
@@ -66,14 +66,14 @@ export class HookManager {
       await this.globalWatcher.close();
     }
 
-    this.globalWatcher = await this.setupWatcherForDir(AIDER_DESK_GLOBAL_HOOKS_DIR, async () => {
+    this.globalWatcher = await this.setupWatcherForDir(REACTOR_GLOBAL_HOOKS_DIR, async () => {
       logger.info('Global hooks changed, reloading...');
-      this.globalHooks = await this.loadHooksFromDir(AIDER_DESK_GLOBAL_HOOKS_DIR);
+      this.globalHooks = await this.loadHooksFromDir(REACTOR_GLOBAL_HOOKS_DIR);
     });
   }
 
   public async reloadProjectHooks(projectDir: string) {
-    const projectHooksDir = path.join(projectDir, AIDER_DESK_HOOKS_DIR);
+    const projectHooksDir = path.join(projectDir, REACTOR_HOOKS_DIR);
     const hooks = await this.loadHooksFromDir(projectHooksDir);
     this.projectHooksCache.set(projectDir, hooks);
 

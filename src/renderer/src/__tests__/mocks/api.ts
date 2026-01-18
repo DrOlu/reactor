@@ -132,7 +132,7 @@ export const createMockApi = (overrides: Partial<ApplicationAPI> = {}): MockedOb
 
     // Version operations
     getVersions: vi.fn((): Promise<VersionsInfo | null> => Promise.resolve(null)),
-    downloadLatestAiderDesk: vi.fn((): Promise<void> => Promise.resolve()),
+    downloadLatestReactor: vi.fn((): Promise<void> => Promise.resolve()),
     getReleaseNotes: vi.fn((): Promise<string | null> => Promise.resolve(null)),
     clearReleaseNotes: vi.fn((): Promise<void> => Promise.resolve()),
 

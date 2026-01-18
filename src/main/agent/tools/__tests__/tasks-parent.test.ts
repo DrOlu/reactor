@@ -30,7 +30,7 @@ describe('Tasks Tools - search_parent_task', () => {
 
   const TASKS_TOOL_GROUP_NAME = 'tasks';
   const TASKS_TOOL_SEARCH_PARENT_TASK = 'search_parent_task';
-  const AIDER_DESK_TASKS_DIR = '.aider-desk/tasks';
+  const REACTOR_TASKS_DIR = '.reactor/tasks';
 
   beforeEach(async () => {
     vi.clearAllMocks();
@@ -178,7 +178,7 @@ describe('Tasks Tools - search_parent_task', () => {
         results: [
           {
             code: 'function parentFunction() {}',
-            file: path.join('/test/project', AIDER_DESK_TASKS_DIR, 'parent-task-id', 'context.json'),
+            file: path.join('/test/project', REACTOR_TASKS_DIR, 'parent-task-id', 'context.json'),
             matched_keywords: ['parent', 'function'],
             score: 0.88,
           },
@@ -201,7 +201,7 @@ describe('Tasks Tools - search_parent_task', () => {
 
       expect(mockSearch).toHaveBeenCalledWith(
         expect.objectContaining({
-          path: path.join('/test/project', AIDER_DESK_TASKS_DIR, 'parent-task-id', 'context.json'),
+          path: path.join('/test/project', REACTOR_TASKS_DIR, 'parent-task-id', 'context.json'),
         }),
       );
       expect(result.results).toHaveLength(1);
@@ -405,19 +405,19 @@ describe('Tasks Tools - search_parent_task', () => {
         results: [
           {
             code: 'function parentFunction1() {}',
-            file: path.join('/test/project', AIDER_DESK_TASKS_DIR, 'parent-task-id', 'context.json'),
+            file: path.join('/test/project', REACTOR_TASKS_DIR, 'parent-task-id', 'context.json'),
             matched_keywords: ['function'],
             score: 0.92,
           },
           {
             code: 'function parentFunction2() {}',
-            file: path.join('/test/project', AIDER_DESK_TASKS_DIR, 'parent-task-id', 'context.json'),
+            file: path.join('/test/project', REACTOR_TASKS_DIR, 'parent-task-id', 'context.json'),
             matched_keywords: ['function'],
             score: 0.87,
           },
           {
             code: 'function parentFunction3() {}',
-            file: path.join('/test/project', AIDER_DESK_TASKS_DIR, 'parent-task-id', 'context.json'),
+            file: path.join('/test/project', REACTOR_TASKS_DIR, 'parent-task-id', 'context.json'),
             matched_keywords: ['function'],
             score: 0.75,
           },

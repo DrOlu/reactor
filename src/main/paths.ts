@@ -2,10 +2,10 @@ import path from 'path';
 
 import { getElectronApp, isDev, isElectron } from '@/app';
 
-if (process.env.AIDER_DESK_DATA_DIR) {
+if (process.env.REACTOR_DATA_DIR) {
   const app = getElectronApp();
   if (app) {
-    app.setPath('userData', process.env.AIDER_DESK_DATA_DIR);
+    app.setPath('userData', process.env.REACTOR_DATA_DIR);
   }
 } else {
   if (isDev()) {
@@ -17,8 +17,8 @@ if (process.env.AIDER_DESK_DATA_DIR) {
 }
 
 export const getDataDir = (): string => {
-  if (process.env.AIDER_DESK_DATA_DIR) {
-    return process.env.AIDER_DESK_DATA_DIR;
+  if (process.env.REACTOR_DATA_DIR) {
+    return process.env.REACTOR_DATA_DIR;
   }
 
   if (isElectron()) {
@@ -26,12 +26,12 @@ export const getDataDir = (): string => {
   }
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const envPaths = require('env-paths').default;
-  return envPaths(isDev() ? 'aider-desk-dev' : 'aider-desk').data;
+  return envPaths(isDev() ? 'reactor-dev' : 'reactor').data;
 };
 
 export const getResourceDir = (): string => {
-  if (process.env.AIDER_DESK_RESOURCES_DIR) {
-    return process.env.AIDER_DESK_RESOURCES_DIR;
+  if (process.env.REACTOR_RESOURCES_DIR) {
+    return process.env.REACTOR_RESOURCES_DIR;
   }
 
   if (isElectron()) {

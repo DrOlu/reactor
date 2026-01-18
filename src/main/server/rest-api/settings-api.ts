@@ -25,7 +25,7 @@ const GetVersionsSchema = z.object({
   forceRefresh: z.string().optional(),
 });
 
-const DownloadLatestAiderDeskSchema = z.object({});
+const DownloadLatestReactorSchema = z.object({});
 
 const GetReleaseNotesSchema = z.object({});
 
@@ -136,16 +136,16 @@ export class SettingsApi extends BaseApi {
       }),
     );
 
-    // Download latest AiderDesk
+    // Download latest Reactor
     router.post(
       '/download-latest',
       this.handleRequest(async (req, res) => {
-        const parsed = this.validateRequest(DownloadLatestAiderDeskSchema, req.body, res);
+        const parsed = this.validateRequest(DownloadLatestReactorSchema, req.body, res);
         if (!parsed) {
           return;
         }
 
-        await this.eventsHandler.downloadLatestAiderDesk();
+        await this.eventsHandler.downloadLatestReactor();
         res.status(200).json({ message: 'Download started' });
       }),
     );

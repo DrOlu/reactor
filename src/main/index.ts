@@ -7,7 +7,7 @@ import { app, BrowserWindow, dialog, Menu, session, shell } from 'electron';
 
 import icon from '../../resources/icon.png?asset';
 
-import { AIDER_DESK_DATA_DIR, HEADLESS_MODE } from '@/constants';
+import { REACTOR_DATA_DIR, HEADLESS_MODE } from '@/constants';
 import { ProgressWindow } from '@/progress-window';
 import { setupIpcHandlers } from '@/ipc-handlers';
 import { performStartUp, UpdateProgressData } from '@/start-up';
@@ -94,7 +94,7 @@ const setupCustomMenu = (): void => {
 
 const initStore = async (): Promise<Store> => {
   const store = new Store();
-  await store.init(AIDER_DESK_DATA_DIR);
+  await store.init(REACTOR_DATA_DIR);
 
   const args = process.argv.slice(app.isPackaged ? 1 : 2);
   if (args.length > 0) {
@@ -252,7 +252,7 @@ const initWindow = async (store: Store): Promise<BrowserWindow> => {
 
 app.whenReady().then(async () => {
   try {
-    electronApp.setAppUserModelId('com.hotovo.aider-desk');
+    electronApp.setAppUserModelId('ng.hyperspace.reactor');
 
     if (!HEADLESS_MODE) {
       // Setup custom menu only in GUI mode
@@ -263,7 +263,7 @@ app.whenReady().then(async () => {
       });
     }
 
-    logger.info('------------ Starting AiderDesk... ------------');
+    logger.info('------------ Starting Reactor... ------------');
     logger.info('Initializing fix-path...');
     (await import('fix-path')).default();
 
@@ -275,7 +275,7 @@ app.whenReady().then(async () => {
         width: 400,
         icon,
       });
-      progressBar.title = 'Starting AiderDesk...';
+      progressBar.title = 'Starting Reactor...';
       progressBar.setDetail('Initializing core components...');
 
       await new Promise((resolve) => {
@@ -330,7 +330,7 @@ app.whenReady().then(async () => {
       });
     }
   } catch (error) {
-    logger.error('Failed to start AiderDesk:', error);
+    logger.error('Failed to start Reactor:', error);
     app.quit();
   }
 });

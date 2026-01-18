@@ -5,7 +5,7 @@ sidebar_label: "Providers"
 
 # Providers Configuration
 
-AiderDesk supports multiple Large Language Model (LLM) providers to power your AI coding assistant. You can configure these providers in the **Model Library** (accessible via the top bar icon). Each provider has specific configuration requirements, and most support environment variables for secure credential management.
+Reactor supports multiple Large Language Model (LLM) providers to power your AI coding assistant. You can configure these providers in the **Model Library** (accessible via the top bar icon). Each provider has specific configuration requirements, and most support environment variables for secure credential management.
 
 ## Table of Contents
 
@@ -408,7 +408,7 @@ For comprehensive provider and model management, see [Model Library](../features
 
 ## Unified Model Prefix System
 
-AiderDesk now uses a unified model prefix system across all modes (Agent, Code, Ask, Architect, Context):
+Reactor now uses a unified model prefix system across all modes (Agent, Code, Ask, Architect, Context):
 
 | Provider | Model Prefix |
 |----------|--------------|

@@ -792,7 +792,7 @@ Do not use escape characters \\ in the string like \\n or \\" and others. Do not
         logger.error('Error executing search command:', error);
         task.addLogMessage(
           'error',
-          `Semantic search failed with error:\n\n${errorMessage}\n\nPlease, consider reporting an issue at https://github.com/hotovo/aider-desk/issues. Thank you.`,
+          `Semantic search failed with error:\n\n${errorMessage}\n\nPlease, consider reporting an issue at https://github.com/DrOlu/reactor/issues. Thank you.`,
         );
         return errorMessage;
       }

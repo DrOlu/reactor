@@ -8,12 +8,12 @@ import { delay } from '@common/utils';
 import logger from '@/logger';
 import { getCurrentPythonLibVersion, getLatestPythonLibVersion, getPythonVenvBinPath } from '@/utils';
 import {
-  AIDER_DESK_DATA_DIR,
+  REACTOR_DATA_DIR,
   SETUP_COMPLETE_FILENAME,
   PYTHON_VENV_DIR,
-  AIDER_DESK_CONNECTOR_DIR,
+  REACTOR_CONNECTOR_DIR,
   RESOURCES_DIR,
-  AIDER_DESK_MCP_SERVER_DIR,
+  REACTOR_MCP_SERVER_DIR,
   UV_EXECUTABLE,
 } from '@/constants';
 import { isDev } from '@/app';
@@ -53,13 +53,13 @@ const createVirtualEnv = async (): Promise<void> => {
 };
 
 const setupAiderConnector = async (cleanInstall: boolean, updateProgress?: UpdateProgressFunction): Promise<void> => {
-  if (!fs.existsSync(AIDER_DESK_CONNECTOR_DIR)) {
-    fs.mkdirSync(AIDER_DESK_CONNECTOR_DIR, { recursive: true });
+  if (!fs.existsSync(REACTOR_CONNECTOR_DIR)) {
+    fs.mkdirSync(REACTOR_CONNECTOR_DIR, { recursive: true });
   }
 
   // Copy connector.py from resources
   const sourceConnectorPath = path.join(RESOURCES_DIR, 'connector/connector.py');
-  const destConnectorPath = path.join(AIDER_DESK_CONNECTOR_DIR, 'connector.py');
+  const destConnectorPath = path.join(REACTOR_CONNECTOR_DIR, 'connector.py');
   fs.copyFileSync(sourceConnectorPath, destConnectorPath);
 
   await installAiderConnectorRequirements(cleanInstall, updateProgress);
@@ -68,14 +68,14 @@ const setupAiderConnector = async (cleanInstall: boolean, updateProgress?: Updat
 const installAiderConnectorRequirements = async (cleanInstall: boolean, updateProgress?: UpdateProgressFunction): Promise<void> => {
   const pythonBinPath = getPythonVenvBinPath();
   let aiderVersionSpecifier = 'aider-chat';
-  if (process.env.AIDER_DESK_AIDER_VERSION) {
-    if (process.env.AIDER_DESK_AIDER_VERSION.startsWith('git+') || path.isAbsolute(process.env.AIDER_DESK_AIDER_VERSION)) {
-      aiderVersionSpecifier = process.env.AIDER_DESK_AIDER_VERSION;
+  if (process.env.REACTOR_AIDER_VERSION) {
+    if (process.env.REACTOR_AIDER_VERSION.startsWith('git+') || path.isAbsolute(process.env.REACTOR_AIDER_VERSION)) {
+      aiderVersionSpecifier = process.env.REACTOR_AIDER_VERSION;
     } else {
-      aiderVersionSpecifier = `aider-chat==${process.env.AIDER_DESK_AIDER_VERSION}`;
+      aiderVersionSpecifier = `aider-chat==${process.env.REACTOR_AIDER_VERSION}`;
     }
   }
-  const extraPackages = (process.env.AIDER_DESK_EXTRA_PYTHON_PACKAGES || '').split(',').filter(Boolean);
+  const extraPackages = (process.env.REACTOR_EXTRA_PYTHON_PACKAGES || '').split(',').filter(Boolean);
   if (extraPackages.length > 0) {
     logger.info(`Extra Python packages specified: ${extraPackages.join(', ')}`);
   }
@@ -180,12 +180,12 @@ const installAiderConnectorRequirements = async (cleanInstall: boolean, updatePr
 
 const setupMcpServer = async () => {
   if (isDev()) {
-    logger.info('Skipping AiderDesk MCP server setup in dev mode');
+    logger.info('Skipping Reactor MCP server setup in dev mode');
     return;
   }
 
-  if (!fs.existsSync(AIDER_DESK_MCP_SERVER_DIR)) {
-    fs.mkdirSync(AIDER_DESK_MCP_SERVER_DIR, { recursive: true });
+  if (!fs.existsSync(REACTOR_MCP_SERVER_DIR)) {
+    fs.mkdirSync(REACTOR_MCP_SERVER_DIR, { recursive: true });
   }
 
   // Copy all files from the MCP server directory
@@ -196,7 +196,7 @@ const setupMcpServer = async () => {
 
     for (const file of files) {
       const sourceFilePath = path.join(sourceMcpServerDir, file);
-      const destFilePath = path.join(AIDER_DESK_MCP_SERVER_DIR, file);
+      const destFilePath = path.join(REACTOR_MCP_SERVER_DIR, file);
 
       // Skip directories for now, only copy files
       if (fs.statSync(sourceFilePath).isFile()) {
@@ -234,7 +234,7 @@ export type UpdateProgressData = {
 export type UpdateProgressFunction = (data: UpdateProgressData) => void;
 
 export const performStartUp = async (updateProgress: UpdateProgressFunction): Promise<boolean> => {
-  logger.info('Starting AiderDesk setup process');
+  logger.info('Starting Reactor setup process');
 
   if (fs.existsSync(SETUP_COMPLETE_FILENAME) && fs.existsSync(PYTHON_VENV_DIR)) {
     logger.info('Setup previously completed, performing update check');
@@ -250,9 +250,9 @@ export const performStartUp = async (updateProgress: UpdateProgressFunction): Pr
 
   await delay(1000);
 
-  if (!fs.existsSync(AIDER_DESK_DATA_DIR)) {
-    logger.info(`Creating AiderDesk directory: ${AIDER_DESK_DATA_DIR}`);
-    fs.mkdirSync(AIDER_DESK_DATA_DIR, { recursive: true });
+  if (!fs.existsSync(REACTOR_DATA_DIR)) {
+    logger.info(`Creating Reactor directory: ${REACTOR_DATA_DIR}`);
+    fs.mkdirSync(REACTOR_DATA_DIR, { recursive: true });
   }
   updateProgress({
     step: 'Initial Setup',
@@ -314,10 +314,10 @@ export const performStartUp = async (updateProgress: UpdateProgressFunction): Pr
       progress: 100,
     });
 
-    logger.info('AiderDesk setup completed successfully');
+    logger.info('Reactor setup completed successfully');
     return true;
   } catch (error) {
-    logger.error('AiderDesk setup failed', { error });
+    logger.error('Reactor setup failed', { error });
 
     // Clean up if setup fails
     if (fs.existsSync(PYTHON_VENV_DIR)) {

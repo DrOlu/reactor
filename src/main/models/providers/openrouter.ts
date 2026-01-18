@@ -5,7 +5,7 @@ import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import type { LanguageModelUsage } from 'ai';
 import type { LanguageModelV2 } from '@ai-sdk/provider';
 
-import { AIDER_DESK_TITLE, AIDER_DESK_WEBSITE } from '@/constants';
+import { REACTOR_TITLE, REACTOR_WEBSITE } from '@/constants';
 import { AiderModelMapping, CacheControl, LlmProviderStrategy, LoadModelsResponse } from '@/models';
 import logger from '@/logger';
 import { getEffectiveEnvironmentVariable } from '@/utils';
@@ -156,8 +156,8 @@ export const createOpenRouterLlm = (profile: ProviderProfile, model: Model, sett
     compatibility: 'strict',
     headers: {
       ...profile.headers,
-      'HTTP-Referer': AIDER_DESK_WEBSITE,
-      'X-Title': AIDER_DESK_TITLE,
+      'HTTP-Referer': REACTOR_WEBSITE,
+      'X-Title': REACTOR_TITLE,
     },
     extraBody: {
       provider: {

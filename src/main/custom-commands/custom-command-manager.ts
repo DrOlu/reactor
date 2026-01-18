@@ -10,7 +10,7 @@ import debounce from 'lodash/debounce';
 
 import type { CustomCommand } from '@common/types';
 
-import { AIDER_DESK_COMMANDS_DIR } from '@/constants';
+import { REACTOR_COMMANDS_DIR } from '@/constants';
 import logger from '@/logger';
 import { Project } from '@/project/project';
 
@@ -59,11 +59,11 @@ export class CustomCommandManager {
   private async initializeCommands(): Promise<void> {
     this.commands.clear();
 
-    const globalCommandsDir = path.join(homedir(), AIDER_DESK_COMMANDS_DIR);
+    const globalCommandsDir = path.join(homedir(), REACTOR_COMMANDS_DIR);
     await this.loadCommandsFromDir(globalCommandsDir, this.commands);
 
     // Load project-specific commands (these will overwrite global ones with same name)
-    const projectCommandsDir = path.join(this.project.baseDir, AIDER_DESK_COMMANDS_DIR);
+    const projectCommandsDir = path.join(this.project.baseDir, REACTOR_COMMANDS_DIR);
     await this.loadCommandsFromDir(projectCommandsDir, this.commands);
 
     this.notifyCommandsUpdated();
@@ -75,11 +75,11 @@ export class CustomCommandManager {
     this.watchers = [];
 
     // Watch global commands directory
-    const globalCommandsDir = path.join(homedir(), AIDER_DESK_COMMANDS_DIR);
+    const globalCommandsDir = path.join(homedir(), REACTOR_COMMANDS_DIR);
     await this.setupWatcherForDirectory(globalCommandsDir);
 
     // Watch project-specific commands directory
-    const projectCommandsDir = path.join(this.project.baseDir, AIDER_DESK_COMMANDS_DIR);
+    const projectCommandsDir = path.join(this.project.baseDir, REACTOR_COMMANDS_DIR);
     await this.setupWatcherForDirectory(projectCommandsDir);
   }
 

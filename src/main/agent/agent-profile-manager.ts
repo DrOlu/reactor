@@ -10,18 +10,18 @@ import { v4 as uuidv4 } from 'uuid';
 
 import type { AgentProfile } from '@common/types';
 
-import { AIDER_DESK_AGENTS_DIR, AIDER_DESK_RULES_DIR } from '@/constants';
+import { REACTOR_AGENTS_DIR, REACTOR_RULES_DIR } from '@/constants';
 import logger from '@/logger';
 import { EventManager } from '@/events';
 import { deriveDirName } from '@/utils';
 
 // Helper methods for directory management
-const getGlobalAgentsDir = (): string => path.join(homedir(), AIDER_DESK_AGENTS_DIR);
-const getProjectAgentsDir = (projectDir: string): string => path.join(projectDir, AIDER_DESK_AGENTS_DIR);
+const getGlobalAgentsDir = (): string => path.join(homedir(), REACTOR_AGENTS_DIR);
+const getProjectAgentsDir = (projectDir: string): string => path.join(projectDir, REACTOR_AGENTS_DIR);
 const getAgentsDirForProfile = (profile: AgentProfile): string => (profile.projectDir ? getProjectAgentsDir(profile.projectDir) : getGlobalAgentsDir());
 
 // Helper methods for rule file discovery
-const getAgentRulesDir = (agentsDir: string, agentDirName: string): string => path.join(agentsDir, agentDirName, AIDER_DESK_RULES_DIR);
+const getAgentRulesDir = (agentsDir: string, agentDirName: string): string => path.join(agentsDir, agentDirName, REACTOR_RULES_DIR);
 
 const getRuleFilesForAgent = async (agentDirName: string, agentsDir: string): Promise<string[]> => {
   const rulesDir = getAgentRulesDir(agentsDir, agentDirName);
@@ -224,7 +224,7 @@ export class AgentProfileManager {
     });
 
     // Also watch rules subdirectories within each agent directory
-    const rulesWatcher = watch(path.join(agentsDir, '*', AIDER_DESK_RULES_DIR), {
+    const rulesWatcher = watch(path.join(agentsDir, '*', REACTOR_RULES_DIR), {
       persistent: true,
       usePolling: true,
       ignoreInitial: true,
@@ -357,7 +357,7 @@ export class AgentProfileManager {
           } else {
             // If no config.json exists, check if this is a project-level directory
             // and if there's a corresponding global profile, merge project-level rule files
-            if (agentsDir.includes('.aider-desk/agents')) {
+            if (agentsDir.includes('.reactor/agents')) {
               await this.mergeProjectRuleFilesIntoGlobalProfile(entry.name, agentsDir);
             }
           }

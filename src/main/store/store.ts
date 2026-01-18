@@ -42,7 +42,7 @@ export const DEFAULT_SETTINGS: SettingsData = {
   font: 'Sono',
   renderMarkdown: true,
   virtualizedRendering: false,
-  aiderDeskAutoUpdate: true,
+  reactorAutoUpdate: true,
   diffViewMode: DiffViewMode.SideBySide,
   aider: {
     options: '',

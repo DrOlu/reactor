@@ -45,12 +45,12 @@ import type { SimpleGit } from 'simple-git';
 
 import { getAllFiles, isValidProjectFile } from '@/utils/file-system';
 import {
-  AIDER_DESK_TASKS_DIR,
-  AIDER_DESK_TODOS_FILE,
+  REACTOR_TASKS_DIR,
+  REACTOR_TODOS_FILE,
   WORKTREE_BRANCH_PREFIX,
-  AIDER_DESK_PROJECT_RULES_DIR,
-  AIDER_DESK_GLOBAL_RULES_DIR,
-  AIDER_DESK_TMP_DIR,
+  REACTOR_PROJECT_RULES_DIR,
+  REACTOR_GLOBAL_RULES_DIR,
+  REACTOR_TMP_DIR,
 } from '@/constants';
 import { Agent, AgentProfileManager, McpManager } from '@/agent';
 import { Connector } from '@/connector';
@@ -129,7 +129,7 @@ export class Task {
       id: taskId,
       baseDir: project.baseDir,
     };
-    this.taskDataPath = path.join(this.project.baseDir, AIDER_DESK_TASKS_DIR, this.taskId, 'settings.json');
+    this.taskDataPath = path.join(this.project.baseDir, REACTOR_TASKS_DIR, this.taskId, 'settings.json');
     this.contextManager = new ContextManager(this, this.taskId);
     this.agent = new Agent(
       this.store,
@@ -234,7 +234,7 @@ export class Task {
       return;
     }
 
-    const contextPath = path.join(this.getProjectDir(), AIDER_DESK_TASKS_DIR, this.taskId, 'context.json');
+    const contextPath = path.join(this.getProjectDir(), REACTOR_TASKS_DIR, this.taskId, 'context.json');
 
     if (!(await fileExists(contextPath))) {
       logger.debug('No existing task context found for state migration', {
@@ -1711,7 +1711,7 @@ export class Task {
 
     // Get global rule files
     try {
-      const globalRulesDir = AIDER_DESK_GLOBAL_RULES_DIR;
+      const globalRulesDir = REACTOR_GLOBAL_RULES_DIR;
       const globalRuleFileNames = await fs.readdir(globalRulesDir);
       for (const fileName of globalRuleFileNames) {
         if (fileName.endsWith('.md')) {
@@ -1746,11 +1746,11 @@ export class Task {
 
     // Get project rule files
     try {
-      const projectRulesDir = path.join(this.project.baseDir, AIDER_DESK_PROJECT_RULES_DIR);
+      const projectRulesDir = path.join(this.project.baseDir, REACTOR_PROJECT_RULES_DIR);
       const projectRuleFileNames = await fs.readdir(projectRulesDir);
       for (const fileName of projectRuleFileNames) {
         if (fileName.endsWith('.md')) {
-          const relativePath = path.join(AIDER_DESK_PROJECT_RULES_DIR, fileName);
+          const relativePath = path.join(REACTOR_PROJECT_RULES_DIR, fileName);
           ruleFiles.push({
             path: relativePath,
             readOnly: true,
@@ -2452,7 +2452,7 @@ export class Task {
   }
 
   private getTodoFilePath(): string {
-    return path.join(this.project.baseDir, AIDER_DESK_TASKS_DIR, this.taskId, AIDER_DESK_TODOS_FILE);
+    return path.join(this.project.baseDir, REACTOR_TASKS_DIR, this.taskId, REACTOR_TODOS_FILE);
   }
 
   public async readTodoFile(): Promise<{
@@ -3128,7 +3128,7 @@ ${error.stderr}`,
         const ctx = await this.worktreeManager.collectConflictContext(worktreePath, filePath);
 
         // Create temp directory structure for conflict files
-        const conflictsDir = path.join(this.project.baseDir, AIDER_DESK_TMP_DIR, 'conflicts');
+        const conflictsDir = path.join(this.project.baseDir, REACTOR_TMP_DIR, 'conflicts');
         const conflictFileDir = path.join(conflictsDir, filePath);
         await fs.mkdir(path.dirname(conflictFileDir), { recursive: true });
 

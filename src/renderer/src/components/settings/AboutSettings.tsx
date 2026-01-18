@@ -18,10 +18,10 @@ export const AboutSettings = ({ settings, setSettings }: Props) => {
   const { versions, checkForUpdates } = useVersions();
   const api = useApi();
 
-  const isAiderDeskUpdateAvailable =
-    !versions?.aiderDeskDownloadProgress && versions?.aiderDeskAvailableVersion && versions.aiderDeskAvailableVersion !== versions.aiderDeskCurrentVersion;
+  const isReactorUpdateAvailable =
+    !versions?.reactorDownloadProgress && versions?.reactorAvailableVersion && versions.reactorAvailableVersion !== versions.reactorCurrentVersion;
   const isAiderUpdateAvailable = versions?.aiderAvailableVersion && versions.aiderAvailableVersion !== versions.aiderCurrentVersion;
-  const isDownloading = typeof versions?.aiderDeskDownloadProgress === 'number';
+  const isDownloading = typeof versions?.reactorDownloadProgress === 'number';
 
   const openLogsDirectory = async () => {
     try {
@@ -34,7 +34,7 @@ export const AboutSettings = ({ settings, setSettings }: Props) => {
 
   const handleDownloadUpdate = async () => {
     try {
-      await api.downloadLatestAiderDesk();
+      await api.downloadLatestReactor();
     } catch (error) {
       toast.error(t('settings.about.downloadError'));
       // eslint-disable-next-line no-console
@@ -51,38 +51,38 @@ export const AboutSettings = ({ settings, setSettings }: Props) => {
 
   return (
     <div className="space-y-6">
-      <Section title="AiderDesk">
+      <Section title="Reactor">
         <div className="p-6 space-y-2">
           <div className="flex  text-sm text-text-primary gap-2">
             <span>{t('settings.about.version')}:</span>
-            <span>{versions ? (versions.aiderDeskCurrentVersion ?? t('settings.about.notAvailable')) : t('common.loading')}</span>
+            <span>{versions ? (versions.reactorCurrentVersion ?? t('settings.about.notAvailable')) : t('common.loading')}</span>
           </div>
           <div className="pt-2">
             <Checkbox
               label={t('settings.about.downloadAutomatically')}
-              checked={settings.aiderDeskAutoUpdate}
-              onChange={(checked) => setSettings({ ...settings, aiderDeskAutoUpdate: checked })}
+              checked={settings.reactorAutoUpdate}
+              onChange={(checked) => setSettings({ ...settings, reactorAutoUpdate: checked })}
             />
           </div>
           {isDownloading && (
             <div className="pt-2">
               <div className="flex items-center gap-2">
                 <span className="text-xs text-warning-light whitespace-nowrap">
-                  {t('settings.about.downloadingUpdate')}: {versions?.aiderDeskDownloadProgress?.toFixed(0)}%
+                  {t('settings.about.downloadingUpdate')}: {versions?.reactorDownloadProgress?.toFixed(0)}%
                 </span>
               </div>
             </div>
           )}
-          {versions?.aiderDeskNewVersionReady ? (
+          {versions?.reactorNewVersionReady ? (
             <div className="pt-2">
-              <p className="text-xs text-warning-light">{t('settings.about.newAiderDeskVersionReady')}</p>
+              <p className="text-xs text-warning-light">{t('settings.about.newReactorVersionReady')}</p>
             </div>
           ) : (
-            isAiderDeskUpdateAvailable &&
+            isReactorUpdateAvailable &&
             !isDownloading && (
               <div className="flex justify-between items-center pt-2">
                 <span className="text-xs text-warning-light">
-                  {t('settings.about.updateAvailable')} ({versions?.aiderDeskAvailableVersion})
+                  {t('settings.about.updateAvailable')} ({versions?.reactorAvailableVersion})
                 </span>
                 <Button onClick={handleDownloadUpdate} size="sm" variant="outline">
                   {t('settings.about.downloadUpdate')}

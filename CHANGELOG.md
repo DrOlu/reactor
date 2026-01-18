@@ -251,7 +251,7 @@
 
 - added checkbox for showing/hiding Hidden models in Model Library
 - correctly opening About tab in Settings when Update is available icon is clicked
-- fixed issue with incorrect tool definition for AiderDesk MCP server
+- fixed issue with incorrect tool definition for Reactor MCP server
 - added sorting to tables in Model Library and Usage dashboard
 - auto approve setting from main agent is passed to subagents
 - added support for custom commands to be organized inside subfolders
@@ -310,7 +310,7 @@
 - correctly using the selected edit format in Architect mode
 - added warning for Gemini models' tool limitation with search grounding
 - added compact information about current actions to subagent messages
-- added 'clear_context' tool to AiderDesk MCP server
+- added 'clear_context' tool to Reactor MCP server
 - added Cerebras provider
 
 ## [0.31.0]
@@ -383,7 +383,7 @@
 
 ## [0.26.0]
 
-- pasting image processed in AiderDesk instead of using Aider to handle it
+- pasting image processed in Reactor instead of using Aider to handle it
 - added image file processing support for Agent context
 - using relative path for web scrapped content files
 - AGENTS.md instead of PROJECT.md when using /init
@@ -467,7 +467,7 @@
 - improved onboarding flow with new unified LLM providers
 - added action to open directory with logs into Settings -> Version
 - added file completion with @ mention
-- added option to open project in AiderDesk from command line
+- added option to open project in Reactor from command line
 - notification when update is ready to be installed
 - custom commands in Agent mode
 - fixed issue with maximizing window on startup
@@ -630,8 +630,8 @@
 - added support for /tokens command
 - added token usage progress bar to cost info
 - added direct support for OpenRouter in Agent mode
-- added version info for Aider and AiderDesk and improved update handling
-- fixed project directory compatibility when mixing IDE on Windows and AiderDesk on WSL
+- added version info for Aider and Reactor and improved update handling
+- fixed project directory compatibility when mixing IDE on Windows and Reactor on WSL
 - fixed issue with no attribute 'usage_report'
 - initial model for project now respect --model option or check for API keys in environment variables
 - improved performance of add/drop actions when working with a large number of files in context
@@ -738,7 +738,7 @@
 - added support for o3-mini model in MCP agent
 - keeping the selected MCP servers when toggling MCP agent
 - added option to add context files to MCP agent
-- properly adding Aider's files present at start to AiderDesk's Context files
+- properly adding Aider's files present at start to Reactor's Context files
 - added /mcp command to toggle MCP agent
 - added maximum tokens setting for MCP agent
 - improved MCP agent system prompt
@@ -753,7 +753,7 @@
 ## [0.4.1]
 
 - fixed prompt field answer handling to properly prepare for next prompt after answering question
-- fixed architect auto-accept behavior in connector to work properly with AiderDesk
+- fixed architect auto-accept behavior in connector to work properly with Reactor
 - fixed yes/no question answering with custom prompt
 - added support for /run command
 - added support for /reasoning-effort, /think-tokens commands and showing the values in the project bar
@@ -768,7 +768,7 @@
 - fixed MCP tool schema for Gemini provider
 - added REST API for managing context files and running prompt
 - added `get-addable-files` REST API endpoint
-- MCP server for AiderDesk
+- MCP server for Reactor
 
 ## [0.3.3]
 

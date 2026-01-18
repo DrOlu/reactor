@@ -9,7 +9,7 @@ import { fileExists } from '@common/utils';
 import treeKill from 'tree-kill';
 import { DEFAULT_AIDER_MAIN_MODEL } from '@common/agent';
 
-import { AIDER_DESK_CONNECTOR_DIR, AIDER_DESK_PROJECT_RULES_DIR, AIDER_DESK_TASKS_DIR, PID_FILES_DIR, PYTHON_COMMAND, SERVER_PORT } from '@/constants';
+import { REACTOR_CONNECTOR_DIR, REACTOR_PROJECT_RULES_DIR, REACTOR_TASKS_DIR, PID_FILES_DIR, PYTHON_COMMAND, SERVER_PORT } from '@/constants';
 import { Connector } from '@/connector';
 import logger from '@/logger';
 import { Store } from '@/store';
@@ -122,8 +122,8 @@ export class AiderManager {
       args.push('--thinking-tokens', thinkingTokens);
     }
 
-    if (settings.aider.addRuleFiles && (await fileExists(path.join(this.task.getProjectDir(), AIDER_DESK_PROJECT_RULES_DIR)))) {
-      args.push('--read', AIDER_DESK_PROJECT_RULES_DIR);
+    if (settings.aider.addRuleFiles && (await fileExists(path.join(this.task.getProjectDir(), REACTOR_PROJECT_RULES_DIR)))) {
+      args.push('--read', REACTOR_PROJECT_RULES_DIR);
     }
 
     if (!optionsArgsSet.has('--auto-commits') && !optionsArgsSet.has('--no-auto-commits')) {
@@ -139,7 +139,7 @@ export class AiderManager {
     }
 
     if (!optionsArgsSet.has('--chat-history-file')) {
-      args.push('--chat-history-file', path.join(this.task.getProjectDir(), AIDER_DESK_TASKS_DIR, this.task.taskId, '.aider.chat.history.md'));
+      args.push('--chat-history-file', path.join(this.task.getProjectDir(), REACTOR_TASKS_DIR, this.task.taskId, '.aider.chat.history.md'));
     }
 
     logger.info('Running Aider with args:', {
@@ -153,8 +153,8 @@ export class AiderManager {
       ...environmentVariables,
       ...envFromMain,
       ...envFromWeak,
-      PYTHONPATH: AIDER_DESK_CONNECTOR_DIR,
-      PYTHONUTF8: process.env.AIDER_DESK_OMIT_PYTHONUTF8 ? undefined : '1',
+      PYTHONPATH: REACTOR_CONNECTOR_DIR,
+      PYTHONUTF8: process.env.REACTOR_OMIT_PYTHONUTF8 ? undefined : '1',
       BASE_DIR: this.task.getProjectDir(),
       TASK_ID: this.task.task.id,
       TASK_DIR: this.task.getTaskDir(),

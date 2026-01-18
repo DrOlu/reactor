@@ -5,7 +5,7 @@ sidebar_label: "Memory"
 
 # Memory
 
-AiderDesk Memory lets the agent **store and retrieve durable, project-scoped knowledge** across tasks. This helps the agent remember stable preferences (like formatting rules), architectural decisions, and recurring codebase patterns—without you repeating them every time.
+Reactor Memory lets the agent **store and retrieve durable, project-scoped knowledge** across tasks. This helps the agent remember stable preferences (like formatting rules), architectural decisions, and recurring codebase patterns—without you repeating them every time.
 
 ## Important prerequisites
 
@@ -25,7 +25,7 @@ Open: `Settings → Memory`
 - **Enabled**: Turns the memory subsystem on/off.
 - **Provider / Model**: Selects the local embedding model used to convert text into vectors.
 - **Max distance**: Similarity threshold used when retrieving memories (lower = stricter matching).
-- **Embedding progress**: On first run (or after model changes) AiderDesk may download/cache the embedding model and/or re-embed existing memories.
+- **Embedding progress**: On first run (or after model changes) Reactor may download/cache the embedding model and/or re-embed existing memories.
 
 ## Using Memory in Agent Mode
 
@@ -69,15 +69,15 @@ What *not* to store:
 
 ## Technical overview (how it works)
 
-AiderDesk Memory is implemented as a **local vector search** system:
+Reactor Memory is implemented as a **local vector search** system:
 
-1. When a memory is stored, AiderDesk generates an **embedding** (a numeric vector) for the content using a local embedding model.
+1. When a memory is stored, Reactor generates an **embedding** (a numeric vector) for the content using a local embedding model.
 2. The memory text + embedding are stored in a local vector database.
 3. When retrieving, your query is embedded and compared to stored vectors using similarity search.
 
 ### Vector database
 
-AiderDesk uses **LanceDB** as the local vector database. Memories are stored locally on your machine and queried with similarity search.
+Reactor uses **LanceDB** as the local vector database. Memories are stored locally on your machine and queried with similarity search.
 
 ### Local embeddings
 

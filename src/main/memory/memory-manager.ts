@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import type { FeatureExtractionPipeline } from '@huggingface/transformers';
 
-import { AIDER_DESK_CACHE_DIR, AIDER_DESK_MEMORY_FILE } from '@/constants';
+import { REACTOR_CACHE_DIR, REACTOR_MEMORY_FILE } from '@/constants';
 import logger from '@/logger';
 import { Store } from '@/store';
 
@@ -49,8 +49,8 @@ export class MemoryManager {
 
       // 1. Initialize the Database
       // Ensure directory exists
-      if (!fs.existsSync(AIDER_DESK_MEMORY_FILE)) {
-        fs.mkdirSync(AIDER_DESK_MEMORY_FILE, { recursive: true });
+      if (!fs.existsSync(REACTOR_MEMORY_FILE)) {
+        fs.mkdirSync(REACTOR_MEMORY_FILE, { recursive: true });
       }
 
       if (!this.lancedb) {
@@ -62,7 +62,7 @@ export class MemoryManager {
         }
       }
 
-      this.db = await this.lancedb.connect(AIDER_DESK_MEMORY_FILE);
+      this.db = await this.lancedb.connect(REACTOR_MEMORY_FILE);
 
       // Check if table exists, if not, we create it lazily on the first add
       const tableNames = await this.db.tableNames();
@@ -100,7 +100,7 @@ export class MemoryManager {
 
         this.embeddingPipelinePromise = this.transformers
           .pipeline('feature-extraction', config.model, {
-            cache_dir: AIDER_DESK_CACHE_DIR,
+            cache_dir: REACTOR_CACHE_DIR,
             progress_callback: (progress) => {
               // @ts-expect-error progress is not typed properly
               const status = `${Number(progress.progress).toFixed(2)}%`;
@@ -202,13 +202,13 @@ export class MemoryManager {
       if (!this.db) {
         logger.info('No database connection found during migration, skipping');
         try {
-          if (!fs.existsSync(AIDER_DESK_MEMORY_FILE)) {
-            fs.mkdirSync(AIDER_DESK_MEMORY_FILE, { recursive: true });
+          if (!fs.existsSync(REACTOR_MEMORY_FILE)) {
+            fs.mkdirSync(REACTOR_MEMORY_FILE, { recursive: true });
           }
           if (!this.lancedb) {
             this.lancedb = await import('@lancedb/lancedb');
           }
-          this.db = await this.lancedb.connect(AIDER_DESK_MEMORY_FILE);
+          this.db = await this.lancedb.connect(REACTOR_MEMORY_FILE);
         } catch (error) {
           logger.error('Failed to connect memory DB during migration:', error);
           return;
@@ -298,7 +298,7 @@ export class MemoryManager {
 
     this.embeddingPipelinePromise = this.transformers
       .pipeline('feature-extraction', newModel, {
-        cache_dir: AIDER_DESK_CACHE_DIR,
+        cache_dir: REACTOR_CACHE_DIR,
         progress_callback: (progress) => {
           // @ts-expect-error progress is not typed properly
           const status = `${Number(progress.progress).toFixed(2)}%`;

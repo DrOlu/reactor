@@ -12,7 +12,7 @@ import { Task } from '@/task';
 import { isDirectory, isFileIgnored } from '@/utils';
 import { ANSWER_RESPONSE_START_TAG, extractPromptContextFromToolResult, THINKING_RESPONSE_STAR_TAG } from '@/agent/utils';
 import { migrateContextV1toV2 } from '@/task/migrations/v1-to-v2';
-import { AIDER_DESK_TASKS_DIR } from '@/constants';
+import { REACTOR_TASKS_DIR } from '@/constants';
 
 const CURRENT_CONTEXT_VERSION = 2;
 
@@ -34,7 +34,7 @@ export class ContextManager {
     this.files = initialFiles;
 
     // Task-specific storage path - single context per task
-    this.storagePath = path.join(task.getProjectDir(), AIDER_DESK_TASKS_DIR, taskId, 'context.json');
+    this.storagePath = path.join(task.getProjectDir(), REACTOR_TASKS_DIR, taskId, 'context.json');
   }
 
   public enableAutosave() {

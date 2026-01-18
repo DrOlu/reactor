@@ -90,7 +90,7 @@ describe('TaskSidebar Hierarchy', () => {
       fireEvent.click(chevron);
     });
 
-    const stored = JSON.parse(localStorage.getItem('aider-desk-expanded-tasks') || '[]');
+    const stored = JSON.parse(localStorage.getItem('reactor-expanded-tasks') || '[]');
     expect(stored).toContain('parent-1');
   });
 

@@ -52,7 +52,7 @@ import {
   UpdateTaskStateData,
 } from './types';
 
-import { AIDER_DESK_DEFAULT_PROMPTS_DIR, AIDER_DESK_GLOBAL_PROMPTS_DIR, AIDER_DESK_PROMPTS_DIR } from '@/constants';
+import { REACTOR_DEFAULT_PROMPTS_DIR, REACTOR_GLOBAL_PROMPTS_DIR, REACTOR_PROMPTS_DIR } from '@/constants';
 import logger from '@/logger';
 import { Task } from '@/task';
 
@@ -62,8 +62,8 @@ export class PromptsManager {
   private watchers = new Map<string, FSWatcher>();
 
   constructor(
-    private readonly defaultTemplatesDir = AIDER_DESK_DEFAULT_PROMPTS_DIR,
-    private readonly globalPromptsDir = AIDER_DESK_GLOBAL_PROMPTS_DIR,
+    private readonly defaultTemplatesDir = REACTOR_DEFAULT_PROMPTS_DIR,
+    private readonly globalPromptsDir = REACTOR_GLOBAL_PROMPTS_DIR,
   ) {
     registerAllHelpers();
   }
@@ -89,7 +89,7 @@ export class PromptsManager {
   private async compileProjectTemplates(projectDir: string): Promise<void> {
     const projectTemplates = new Map<string, HandlebarsTemplateDelegate>();
     const templateNames = this.getTemplateNames();
-    const projectPromptsDir = path.join(projectDir, AIDER_DESK_PROMPTS_DIR);
+    const projectPromptsDir = path.join(projectDir, REACTOR_PROMPTS_DIR);
 
     for (const name of templateNames) {
       const source = await this.loadProjectTemplateSource(projectPromptsDir, name);
@@ -199,7 +199,7 @@ export class PromptsManager {
       return;
     }
 
-    const projectPromptsDir = path.join(projectDir, '.aider-desk', 'prompts');
+    const projectPromptsDir = path.join(projectDir, '.reactor', 'prompts');
     try {
       await fs.mkdir(projectPromptsDir, { recursive: true });
     } catch (error) {

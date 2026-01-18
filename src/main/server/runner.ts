@@ -5,18 +5,18 @@ import logger from '@/logger';
 import { initManagers } from '@/managers';
 import { performStartUp } from '@/start-up';
 import { Store } from '@/store';
-import { AIDER_DESK_DATA_DIR } from '@/constants';
+import { REACTOR_DATA_DIR } from '@/constants';
 import { getDefaultProjectSettings } from '@/utils';
 import { ModelManager } from '@/models';
 import { AgentProfileManager } from '@/agent';
 
 export const addProjectsFromEnv = async (store: Store, modelManager: ModelManager, agentProfileManager: AgentProfileManager): Promise<void> => {
-  const aiderDeskProjectsEnv = process.env.AIDER_DESK_PROJECTS;
-  if (!aiderDeskProjectsEnv) {
+  const reactorProjectsEnv = process.env.REACTOR_PROJECTS;
+  if (!reactorProjectsEnv) {
     return;
   }
 
-  const projectPaths = aiderDeskProjectsEnv
+  const projectPaths = reactorProjectsEnv
     .split(',')
     .map((p) => p.trim())
     .filter((p) => p.length > 0);
@@ -25,7 +25,7 @@ export const addProjectsFromEnv = async (store: Store, modelManager: ModelManage
     return;
   }
 
-  logger.info('AIDER_DESK_PROJECTS environment variable found', { projectPaths });
+  logger.info('REACTOR_PROJECTS environment variable found', { projectPaths });
 
   const openProjects = store.getOpenProjects();
 
@@ -33,7 +33,7 @@ export const addProjectsFromEnv = async (store: Store, modelManager: ModelManage
   const projectsFromEnv: ProjectData[] = [];
 
   for (const projectPath of projectPaths) {
-    logger.info('Creating project from AIDER_DESK_PROJECTS', {
+    logger.info('Creating project from REACTOR_PROJECTS', {
       projectPath,
     });
 
@@ -68,17 +68,17 @@ export const addProjectsFromEnv = async (store: Store, modelManager: ModelManage
     }
 
     store.setOpenProjects(projectsFromEnv);
-    logger.info(`Overridden open projects with ${projectsFromEnv.length} project(s) from AIDER_DESK_PROJECTS`);
+    logger.info(`Overridden open projects with ${projectsFromEnv.length} project(s) from REACTOR_PROJECTS`);
   }
 };
 
 const main = async (): Promise<void> => {
   // Force headless mode for node-runner
-  if (!process.env.AIDER_DESK_HEADLESS) {
-    process.env.AIDER_DESK_HEADLESS = 'true';
+  if (!process.env.REACTOR_HEADLESS) {
+    process.env.REACTOR_HEADLESS = 'true';
   }
 
-  logger.info('------------ Starting AiderDesk Node Runner... ------------');
+  logger.info('------------ Starting Reactor Node Runner... ------------');
 
   const updateProgress = ({ step, message, info, progress }: { step: string; message: string; info?: string; progress?: number }) => {
     logger.info(`[${step}] ${message}${info ? ` (${info})` : ''}${progress !== undefined ? ` [${Math.round(progress)}%]` : ''}`);
@@ -89,18 +89,18 @@ const main = async (): Promise<void> => {
     logger.info('Startup complete');
 
     const store = new Store();
-    await store.init(AIDER_DESK_DATA_DIR);
+    await store.init(REACTOR_DATA_DIR);
 
     // Initialize managers first
     const { modelManager, agentProfileManager } = await initManagers(store);
 
-    // Check for AIDER_DESK_PROJECTS environment variable and add projects
+    // Check for REACTOR_PROJECTS environment variable and add projects
     await addProjectsFromEnv(store, modelManager, agentProfileManager);
 
-    logger.info('AiderDesk Node Runner is ready!');
-    logger.info('API server is running. You can now interact with AiderDesk via HTTP API or Socket.IO clients.');
+    logger.info('Reactor Node Runner is ready!');
+    logger.info('API server is running. You can now interact with Reactor via HTTP API or Socket.IO clients.');
   } catch (error) {
-    logger.error('Failed to start AiderDesk Node Runner:', error);
+    logger.error('Failed to start Reactor Node Runner:', error);
     process.exit(1);
   }
 };

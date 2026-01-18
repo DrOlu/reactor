@@ -227,7 +227,7 @@ class PromptExecutor:
 
     self.active_coders[prompt_context.id] = coder
 
-    # we need to disable auto accept as this does not work properly with AiderDesk
+    # we need to disable auto accept as this does not work properly with Reactor
     coder.auto_accept_architect=False
 
     # setting usage report to None to avoid no attribute error
@@ -457,7 +457,7 @@ class ConnectorInputOutput(InputOutput):
     self.cancelled = False
 
   def add_to_input_history(self, input_text):
-    # handled by AiderDesk
+    # handled by Reactor
     pass
 
   def tool_output(self, *messages, log_only=False, bold=False):
@@ -555,7 +555,7 @@ class ConnectorInputOutput(InputOutput):
       return confirmation_result
 
     if question == "Add URL to the chat?":
-      # we are handling this in AiderDesk differently
+      # we are handling this in Reactor differently
       return False
 
     if self.prompt_context:
@@ -608,7 +608,7 @@ class ConnectorInputOutput(InputOutput):
 
   def interrupt_input(self):
     async def process_changes():
-      lock_file_path = Path(self.connector.base_dir) / '.aider-desk' / 'watch-files.lock'
+      lock_file_path = Path(self.connector.base_dir) / '.reactor' / 'watch-files.lock'
       lock_file = None
 
       try:
@@ -1393,7 +1393,7 @@ def main(argv=None):
       argv = sys.argv[1:]
 
     # Parse command line arguments
-    parser = argparse.ArgumentParser(description="AiderDesk Connector")
+    parser = argparse.ArgumentParser(description="Reactor Connector")
     parser.add_argument("--watch-files", action="store_true", help="Watch files for changes")
     parser.add_argument("--reasoning-effort", type=str, default=None, help="Set the reasoning effort for the model")
     parser.add_argument("--thinking-tokens", type=str, default=None, help="Set the thinking tokens for the model")
@@ -1450,8 +1450,8 @@ def setup_telemetry():
     litellm.callbacks = ["langfuse_otel"]
 
   # Set OpenRouter site and app name
-  os.environ["OR_SITE_URL"] = 'https://aiderdesk.hotovo.com'
-  os.environ["OR_APP_NAME"] = 'AiderDesk'
+  os.environ["OR_SITE_URL"] = 'https://github.com/DrOlu/reactor'
+  os.environ["OR_APP_NAME"] = 'Reactor'
   os.environ["LITELLM_LOG"] = "DEBUG"
 
 if __name__ == "__main__":

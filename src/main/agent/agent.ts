@@ -53,7 +53,7 @@ import { extractReasoningMiddleware } from './middlewares/extract-reasoning-midd
 
 import { MemoryManager } from '@/memory/memory-manager';
 import { PromptsManager } from '@/prompts';
-import { AIDER_DESK_PROJECT_RULES_DIR } from '@/constants';
+import { REACTOR_PROJECT_RULES_DIR } from '@/constants';
 import { Task } from '@/task';
 import { Store } from '@/store';
 import logger from '@/logger';
@@ -165,7 +165,7 @@ export class Agent {
     // Filter out rule files as they are already included in the system prompt
     const filteredContextFiles = contextFiles.filter((file) => {
       const normalizedPath = path.normalize(file.path);
-      const normalizedRulesDir = path.normalize(AIDER_DESK_PROJECT_RULES_DIR);
+      const normalizedRulesDir = path.normalize(REACTOR_PROJECT_RULES_DIR);
 
       // Check if the file is within the rules directory
       return (

@@ -3,51 +3,51 @@ import { homedir } from 'os';
 
 import { getDataDir, getResourceDir } from './paths';
 
-export const AIDER_DESK_TITLE = 'AiderDesk';
-export const AIDER_DESK_WEBSITE = 'https://aiderdesk.hotovo.com';
-export const AIDER_DESK_DATA_DIR = getDataDir();
-export const AIDER_DESK_CACHE_DIR = path.join(AIDER_DESK_DATA_DIR, 'cache');
+export const REACTOR_TITLE = 'Reactor';
+export const REACTOR_WEBSITE = 'https://github.com/DrOlu/reactor';
+export const REACTOR_DATA_DIR = getDataDir();
+export const REACTOR_CACHE_DIR = path.join(REACTOR_DATA_DIR, 'cache');
 export const RESOURCES_DIR = getResourceDir();
-export const LOGS_DIR = path.join(AIDER_DESK_DATA_DIR, 'logs');
-export const DB_FILE_PATH = path.join(AIDER_DESK_DATA_DIR, 'aider-desk.db');
-export const SETUP_COMPLETE_FILENAME = path.join(AIDER_DESK_DATA_DIR, 'setup-complete');
-export const PYTHON_VENV_DIR = path.join(AIDER_DESK_DATA_DIR, 'python-venv');
+export const LOGS_DIR = path.join(REACTOR_DATA_DIR, 'logs');
+export const DB_FILE_PATH = path.join(REACTOR_DATA_DIR, 'reactor.db');
+export const SETUP_COMPLETE_FILENAME = path.join(REACTOR_DATA_DIR, 'setup-complete');
+export const PYTHON_VENV_DIR = path.join(REACTOR_DATA_DIR, 'python-venv');
 export const PYTHON_COMMAND = process.platform === 'win32' ? path.join(PYTHON_VENV_DIR, 'Scripts', 'python.exe') : path.join(PYTHON_VENV_DIR, 'bin', 'python');
-export const AIDER_DESK_CONNECTOR_DIR = path.join(AIDER_DESK_DATA_DIR, 'aider-connector');
-export const AIDER_DESK_MCP_SERVER_DIR = path.join(AIDER_DESK_DATA_DIR, 'mcp-server');
+export const REACTOR_CONNECTOR_DIR = path.join(REACTOR_DATA_DIR, 'reactor-connector');
+export const REACTOR_MCP_SERVER_DIR = path.join(REACTOR_DATA_DIR, 'mcp-server');
 export const UV_EXECUTABLE =
   process.platform === 'win32'
     ? path.join(RESOURCES_DIR, 'win', 'uv.exe')
     : process.platform === 'darwin'
       ? path.join(RESOURCES_DIR, 'macos', 'uv')
       : path.join(RESOURCES_DIR, 'linux', 'uv');
-export const SERVER_PORT = process.env.AIDER_DESK_PORT ? parseInt(process.env.AIDER_DESK_PORT) : 24337;
-export const PID_FILES_DIR = path.join(AIDER_DESK_DATA_DIR, 'aider-processes');
+export const SERVER_PORT = process.env.REACTOR_PORT ? parseInt(process.env.REACTOR_PORT) : 24337;
+export const PID_FILES_DIR = path.join(REACTOR_DATA_DIR, 'reactor-processes');
 // constants for project directory files
-export const AIDER_DESK_DIR = '.aider-desk';
-export const AIDER_DESK_TASKS_DIR = path.join(AIDER_DESK_DIR, 'tasks');
-export const AIDER_DESK_TODOS_FILE = 'todos.json';
-export const AIDER_DESK_RULES_DIR = 'rules';
-export const AIDER_DESK_PROJECT_RULES_DIR = path.join(AIDER_DESK_DIR, AIDER_DESK_RULES_DIR);
-export const AIDER_DESK_GLOBAL_RULES_DIR = path.join(homedir(), AIDER_DESK_DIR, AIDER_DESK_RULES_DIR);
-export const AIDER_DESK_COMMANDS_DIR = path.join(AIDER_DESK_DIR, 'commands');
-export const AIDER_DESK_HOOKS_DIR = path.join(AIDER_DESK_DIR, 'hooks');
-export const AIDER_DESK_GLOBAL_HOOKS_DIR = path.join(homedir(), AIDER_DESK_DIR, 'hooks');
-export const AIDER_DESK_PROMPTS_DIR = path.join(AIDER_DESK_DIR, 'prompts');
-export const AIDER_DESK_DEFAULT_PROMPTS_DIR = path.join(RESOURCES_DIR, 'prompts');
-export const AIDER_DESK_GLOBAL_PROMPTS_DIR = path.join(homedir(), AIDER_DESK_DIR, 'prompts');
-export const AIDER_DESK_AGENTS_DIR = path.join(AIDER_DESK_DIR, 'agents');
-export const AIDER_DESK_TMP_DIR = path.join(AIDER_DESK_DIR, 'tmp');
-export const AIDER_DESK_WATCH_FILES_LOCK = path.join(AIDER_DESK_DIR, 'watch-files.lock');
-export const WORKTREE_BRANCH_PREFIX = 'aider-desk/task/';
-export const AIDER_DESK_MEMORY_FILE = path.join(AIDER_DESK_DATA_DIR, 'memory.db');
+export const REACTOR_DIR = '.reactor';
+export const REACTOR_TASKS_DIR = path.join(REACTOR_DIR, 'tasks');
+export const REACTOR_TODOS_FILE = 'todos.json';
+export const REACTOR_RULES_DIR = 'rules';
+export const REACTOR_PROJECT_RULES_DIR = path.join(REACTOR_DIR, REACTOR_RULES_DIR);
+export const REACTOR_GLOBAL_RULES_DIR = path.join(homedir(), REACTOR_DIR, REACTOR_RULES_DIR);
+export const REACTOR_COMMANDS_DIR = path.join(REACTOR_DIR, 'commands');
+export const REACTOR_HOOKS_DIR = path.join(REACTOR_DIR, 'hooks');
+export const REACTOR_GLOBAL_HOOKS_DIR = path.join(homedir(), REACTOR_DIR, 'hooks');
+export const REACTOR_PROMPTS_DIR = path.join(REACTOR_DIR, 'prompts');
+export const REACTOR_DEFAULT_PROMPTS_DIR = path.join(RESOURCES_DIR, 'prompts');
+export const REACTOR_GLOBAL_PROMPTS_DIR = path.join(homedir(), REACTOR_DIR, 'prompts');
+export const REACTOR_AGENTS_DIR = path.join(REACTOR_DIR, 'agents');
+export const REACTOR_TMP_DIR = path.join(REACTOR_DIR, 'tmp');
+export const REACTOR_WATCH_FILES_LOCK = path.join(REACTOR_DIR, 'watch-files.lock');
+export const WORKTREE_BRANCH_PREFIX = 'reactor/task/';
+export const REACTOR_MEMORY_FILE = path.join(REACTOR_DATA_DIR, 'memory.db');
 
 export const POSTHOG_PUBLIC_API_KEY = 'phc_AF4zkjrcziXLh8PBFsRSvVr4VZ38p3ezsdX0KDYuElI';
 export const POSTHOG_HOST = 'https://eu.i.posthog.com';
 
-export const HEADLESS_MODE = process.env.AIDER_DESK_HEADLESS === 'true';
-export const AUTH_USERNAME = process.env.AIDER_DESK_USERNAME;
-export const AUTH_PASSWORD = process.env.AIDER_DESK_PASSWORD;
+export const HEADLESS_MODE = process.env.REACTOR_HEADLESS === 'true';
+export const AUTH_USERNAME = process.env.REACTOR_USERNAME;
+export const AUTH_PASSWORD = process.env.REACTOR_PASSWORD;
 
 export const PROBE_BINARY_PATH = path.join(
   RESOURCES_DIR,

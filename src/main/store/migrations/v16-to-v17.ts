@@ -5,7 +5,7 @@ import { homedir } from 'os';
 
 import { SettingsData, AgentProfile } from '@common/types';
 
-import { AIDER_DESK_AGENTS_DIR } from '@/constants';
+import { REACTOR_AGENTS_DIR } from '@/constants';
 import logger from '@/logger';
 import { deriveDirName } from '@/utils';
 
@@ -40,7 +40,7 @@ export const migrateSettingsV16toV17 = async (settings: SettingsData): Promise<S
   logger.info('Migrating agent profiles from settings to file-based system');
 
   // Create global agents directory
-  const globalAgentsDir = path.join(homedir(), AIDER_DESK_AGENTS_DIR);
+  const globalAgentsDir = path.join(homedir(), REACTOR_AGENTS_DIR);
 
   try {
     await fs.mkdir(globalAgentsDir, { recursive: true });

@@ -19,7 +19,7 @@ export const useVersions = () => {
         // eslint-disable-next-line no-console
         console.error('Failed to fetch versions:', error);
         // Optionally set versions to indicate an error or keep them null
-        setVersions({ aiderDeskCurrentVersion: 'Error', aiderCurrentVersion: 'Error' });
+        setVersions({ reactorCurrentVersion: 'Error', aiderCurrentVersion: 'Error' });
       }
     },
     [api],

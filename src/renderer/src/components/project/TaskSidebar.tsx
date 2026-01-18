@@ -417,7 +417,7 @@ const TaskSidebarComponent = ({
   const [showArchived, setShowArchived] = useState<boolean>(false);
   const [isSearchVisible, setIsSearchVisible] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [expandedTaskIds, setExpandedTaskIds] = useLocalStorage<string[]>('aider-desk-expanded-tasks', []);
+  const [expandedTaskIds, setExpandedTaskIds] = useLocalStorage<string[]>('reactor-expanded-tasks', []);
 
   const searchInputRef = useRef<HTMLInputElement>(null);
   const debouncedSearchQuery = useDebounce(searchQuery, 50);

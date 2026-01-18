@@ -56,15 +56,15 @@ export const Home = () => {
     }
   };
 
-  const isAiderDeskUpdateAvailable = versions?.aiderDeskAvailableVersion && versions.aiderDeskAvailableVersion !== versions.aiderDeskCurrentVersion;
+  const isReactorUpdateAvailable = versions?.reactorAvailableVersion && versions.reactorAvailableVersion !== versions.reactorCurrentVersion;
   const isAiderUpdateAvailable = versions?.aiderAvailableVersion && versions.aiderAvailableVersion !== versions.aiderCurrentVersion;
-  const isUpdateAvailable = isAiderDeskUpdateAvailable || isAiderUpdateAvailable;
-  const isDownloading = typeof versions?.aiderDeskDownloadProgress === 'number';
-  const showUpdateIcon = isDownloading || isUpdateAvailable || versions?.aiderDeskNewVersionReady;
+  const isUpdateAvailable = isReactorUpdateAvailable || isAiderUpdateAvailable;
+  const isDownloading = typeof versions?.reactorDownloadProgress === 'number';
+  const showUpdateIcon = isDownloading || isUpdateAvailable || versions?.reactorNewVersionReady;
 
   useEffect(() => {
-    if (versions?.aiderDeskNewVersionReady && !hasShownUpdateNotification) {
-      showInfoNotification(t('settings.about.newAiderDeskVersionReady'));
+    if (versions?.reactorNewVersionReady && !hasShownUpdateNotification) {
+      showInfoNotification(t('settings.about.newReactorVersionReady'));
       hasShownUpdateNotification = true;
     }
   }, [versions, t]);
@@ -373,13 +373,13 @@ export const Home = () => {
     ));
 
   const getUpdateTooltip = () => {
-    if (versions?.aiderDeskNewVersionReady) {
-      return t('settings.about.newAiderDeskVersionReady');
+    if (versions?.reactorNewVersionReady) {
+      return t('settings.about.newReactorVersionReady');
     }
-    if (isDownloading && versions?.aiderDeskDownloadProgress) {
-      return `${t('settings.about.downloadingUpdate')}: ${Math.round(versions.aiderDeskDownloadProgress)}%`;
+    if (isDownloading && versions?.reactorDownloadProgress) {
+      return `${t('settings.about.downloadingUpdate')}: ${Math.round(versions.reactorDownloadProgress)}%`;
     }
-    if (isAiderDeskUpdateAvailable) {
+    if (isReactorUpdateAvailable) {
       return t('settings.about.updateAvailable');
     }
     if (isAiderUpdateAvailable && versions?.aiderAvailableVersion) {
@@ -468,7 +468,7 @@ export const Home = () => {
         </Activity>
         {releaseNotesContent && versions && (
           <HtmlInfoDialog
-            title={`${t('settings.about.releaseNotes')} - ${versions.aiderDeskCurrentVersion}`}
+            title={`${t('settings.about.releaseNotes')} - ${versions.reactorCurrentVersion}`}
             text={releaseNotesContent}
             onClose={handleCloseReleaseNotes}
           />

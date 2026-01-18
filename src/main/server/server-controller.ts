@@ -43,11 +43,11 @@ export class ServerController {
 
   private serverGuardMiddleware(_: Request, res: Response, next: NextFunction): void {
     // In headless mode, always allow requests regardless of server.enabled setting
-    if (process.env.AIDER_DESK_HEADLESS === 'true' || this.isStarted) {
+    if (process.env.REACTOR_HEADLESS === 'true' || this.isStarted) {
       next();
     } else {
       res.status(503).json({
-        error: 'Server is not started. Enable the server in your AiderDesk -> Settings -> Server.',
+        error: 'Server is not started. Enable the server in your Reactor -> Settings -> Server.',
       });
     }
   }
@@ -68,13 +68,13 @@ export class ServerController {
     // Check if environment variables for auth are provided, which overrides settings
     const useEnvAuth = !!(AUTH_USERNAME && AUTH_PASSWORD);
     if (useEnvAuth) {
-      logger.info('Using Basic Auth credentials from environment variables AIDER_DESK_USERNAME and AIDER_DESK_PASSWORD');
+      logger.info('Using Basic Auth credentials from environment variables REACTOR_USERNAME and REACTOR_PASSWORD');
     }
 
     if (useEnvAuth || settings.basicAuth.enabled) {
       const authHeader = req.headers.authorization;
       if (!authHeader || !authHeader.startsWith('Basic ')) {
-        res.setHeader('WWW-Authenticate', 'Basic realm="AiderDesk"');
+        res.setHeader('WWW-Authenticate', 'Basic realm="Reactor"');
         res.status(401).send('Authentication required');
         return;
       }

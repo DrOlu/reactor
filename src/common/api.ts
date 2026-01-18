@@ -128,7 +128,7 @@ export interface ApplicationAPI {
   setZoomLevel: (level: number) => Promise<void>;
 
   getVersions: (forceRefresh?: boolean) => Promise<VersionsInfo | null>;
-  downloadLatestAiderDesk: () => Promise<void>;
+  downloadLatestReactor: () => Promise<void>;
 
   getReleaseNotes: () => Promise<string | null>;
   clearReleaseNotes: () => Promise<void>;

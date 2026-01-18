@@ -35,7 +35,7 @@ jobs:
 
       - name: Add upstream remote
         run: |
-          git remote add upstream https://github.com/hotovo/aider-desk.git || true
+          git remote add upstream https://github.com/DrOlu/reactor.git || true
           git fetch upstream main
 
       - name: Check for upstream changes
@@ -81,8 +81,8 @@ jobs:
             sed -i 's/"name": "aider-desk"/"name": "reactor"/g' package.json
             sed -i 's/"description": "Aider desktop application wrapper"/"description": "Reactor - AI-powered coding assistant desktop application"/g' package.json
             sed -i 's/"author": "Hotovo"/"author": {"name": "Hyperspace", "email": "reactor@hyperspace.ng"}/g' package.json
-            sed -i 's|"homepage": "https://aiderdesk.hotovo.com"|"homepage": "https://github.com/DrOlu/reactor"|g' package.json
-            sed -i 's|"url": "https://github.com/hotovo/aider-desk.git"|"url": "https://github.com/DrOlu/reactor.git"|g' package.json
+            sed -i 's|"homepage": "https://github.com/DrOlu/reactor"|"homepage": "https://github.com/DrOlu/reactor"|g' package.json
+            sed -i 's|"url": "https://github.com/DrOlu/reactor.git"|"url": "https://github.com/DrOlu/reactor.git"|g' package.json
           fi
           
           # Ensure branding is correct in electron-builder.yml
@@ -126,6 +126,6 @@ jobs:
         run: |
           echo "## Upstream Sync Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Successfully synced with [hotovo/aider-desk](https://github.com/hotovo/aider-desk)" >> $GITHUB_STEP_SUMMARY
+          echo "Successfully synced with [DrOlu/reactor](https://github.com/DrOlu/reactor)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Build workflow has been triggered." >> $GITHUB_STEP_SUMMARY

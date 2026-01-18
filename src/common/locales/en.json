@@ -49,8 +49,8 @@
     "nextResult": "Next result (F3)"
   },
   "onboarding": {
-    "title": "Welcome to AiderDesk",
-    "description": "AiderDesk is your desktop companion for AI-assisted coding. This application brings the power of Aider's AI coding assistant to a user-friendly interface, helping you:",
+    "title": "Welcome to Reactor",
+    "description": "Reactor is your desktop companion for AI-assisted coding. This application brings the power of Aider's AI coding assistant to a user-friendly interface, helping you:",
     "skipForNow": "Skip for now",
     "finish": "Finish Setup",
     "features": {
@@ -92,7 +92,7 @@
       "description": "Configure your LLM providers for use with both Aider and Agent modes. You can set up API keys and additional settings for various providers.",
       "configureLater": "You can configure these later in the Settings if you prefer.",
       "connectTitle": "Connect Your AI Model",
-      "connectDescription": "AiderDesk supports multiple AI providers including OpenAI, Anthropic, Google Gemini, and more. Your API keys are stored securely on your local machine and never shared.",
+      "connectDescription": "Reactor supports multiple AI providers including OpenAI, Anthropic, Google Gemini, and more. Your API keys are stored securely on your local machine and never shared.",
       "advancedUsersNote": "Advanced users: You can also configure providers using environment variables in the next step's Aider configuration section.",
       "advancedSettings": "Advanced settings",
       "order": "Order",
@@ -115,7 +115,7 @@
     },
     "agent": {
       "title": "Meet Your AI Agent",
-      "description": "Discover the power of autonomous AI assistance with AiderDesk's Agent mode. Your AI agent can work independently to complete complex tasks.",
+      "description": "Discover the power of autonomous AI assistance with Reactor's Agent mode. Your AI agent can work independently to complete complex tasks.",
       "capabilities": "Agent Capabilities:",
       "autonomousPlanning": "Autonomous Task Planning:",
       "autonomousPlanningDesc": "Breaks down complex requests into manageable steps and executes them systematically.",
@@ -130,9 +130,9 @@
     },
     "complete": {
       "title": "Setup Complete!",
-      "description": "Congratulations! You've successfully set up AiderDesk. You're now ready to start coding with AI assistance.",
+      "description": "Congratulations! You've successfully set up Reactor. You're now ready to start coding with AI assistance.",
       "ready": "Click 'Finish Setup' to begin your coding journey.",
-      "success": "Onboarding completed successfully! Welcome to AiderDesk."
+      "success": "Onboarding completed successfully! Welcome to Reactor."
     },
     "errors": {
       "navigationFailed": "Navigation failed. Please try again.",
@@ -498,7 +498,7 @@
       "customInstructions": "Additional Rules",
       "rules": "Rules",
       "rulesInfo": "You can use Rules to add specific instructions for specific MCP servers or to control flow of the agent.",
-      "ruleFilesInfo": "Any file in your project's <file>.aider-desk/rules</file> directory is automatically included in the Rules. See example <a>here</a>.",
+      "ruleFilesInfo": "Any file in your project's <file>.reactor/rules</file> directory is automatically included in the Rules. See example <a>here</a>.",
       "noServersConfigured": "No MCP servers configured.",
       "computationalResources": "Maximum number of iterations for the agent per run. Helps control computational resources.",
       "rateLimiting": "Sets the minimum time between tool calls to prevent rate limiting (e.g. for Brave or other API-constrained services).",
@@ -594,7 +594,7 @@
       "optionsDocumentation": "Check the documentation for available options at",
       "envVarsDocumentation": "Check the documentation for environment variables at",
       "context": "Context",
-      "addRuleFiles": "Add rule files from project's <file>.aider-desk/rules</file> directory as read-only files.",
+      "addRuleFiles": "Add rule files from project's <file>.reactor/rules</file> directory as read-only files.",
       "confirmBeforeEdit": "Confirm before editing files"
     },
     "common": {
@@ -662,11 +662,11 @@
       "version": "Version",
       "notAvailable": "N/A",
       "checkForUpdates": "Check for updates",
-      "newAiderVersionAvailable": "New Aider version ({{version}}) is available - restart AiderDesk to install.",
+      "newAiderVersionAvailable": "New Aider version ({{version}}) is available - restart Reactor to install.",
       "updateAvailable": "Update is available",
       "downloadUpdate": "Download",
       "downloadingUpdate": "Downloading update",
-      "newAiderDeskVersionReady": "A new version is ready. Restart AiderDesk to apply the update.",
+      "newReactorVersionReady": "A new version is ready. Restart Reactor to apply the update.",
       "downloadAutomatically": "Download update automatically",
       "releaseNotes": "Release notes",
       "openLogsDirectory": "Open logs directory",
@@ -692,7 +692,7 @@
       "modeAtSign": "@ mention mode"
     },
     "server": {
-      "description": "Enable server on port 24337 to access AiderDesk from external applications",
+      "description": "Enable server on port 24337 to access Reactor from external applications",
       "status": "Status",
       "running": "Running",
       "enableBasicAuth": "Enable Basic Authentication",
@@ -1259,7 +1259,7 @@
   },
   "telemetry": {
     "title": "Telemetry Information",
-    "message": "To help us improve AiderDesk, anonymous telemetry data is collected. This includes information like mode usage (agent, code, ask...) and some specifics when Agent mode is used. No personal data or prompts are ever collected.",
+    "message": "To help us improve Reactor, anonymous telemetry data is collected. This includes information like mode usage (agent, code, ask...) and some specifics when Agent mode is used. No personal data or prompts are ever collected.",
     "fullInfo": "Full information about what is collected can be found <a>here</a>.",
     "enabledLabel": "Enable anonymous telemetry"
   },
@@ -1437,7 +1437,7 @@
     "noChanges": "No changes"
   },
   "welcomeMessage": {
-    "title": "AiderDesk",
+    "title": "Reactor",
     "subtitle": "Your AI-powered coding assistant",
     "features": {
       "title": "What you can do:",

@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-Consider using [GitHub Discussions Q&A](https://github.com/hotovo/aider-desk/discussions/new?category=q-a) for questions.
+Consider using [GitHub Discussions Q&A](https://github.com/DrOlu/reactor/discussions/new?category=q-a) for questions.
 
 **What is your question?**
 Please describe your question clearly.

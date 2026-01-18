@@ -6,12 +6,12 @@ import { ContextFile, ContextMessage, TaskContext, TaskData } from '@common/type
 import { fileExists } from '@common/utils';
 import { DEFAULT_AIDER_MAIN_MODEL } from '@common/agent';
 
-import { AIDER_DESK_DIR, AIDER_DESK_TASKS_DIR } from '@/constants';
+import { REACTOR_DIR, REACTOR_TASKS_DIR } from '@/constants';
 import logger from '@/logger';
 import { Project } from '@/project';
 
-const SESSIONS_DIR = path.join(AIDER_DESK_DIR, 'sessions');
-const TASKS_DIR = AIDER_DESK_TASKS_DIR;
+const SESSIONS_DIR = path.join(REACTOR_DIR, 'sessions');
+const TASKS_DIR = REACTOR_TASKS_DIR;
 
 interface SessionData {
   version: number;

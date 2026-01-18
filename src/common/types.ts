@@ -554,7 +554,7 @@ export interface SettingsData {
   fontSize?: number;
   renderMarkdown: boolean;
   virtualizedRendering: boolean;
-  aiderDeskAutoUpdate: boolean;
+  reactorAutoUpdate: boolean;
   diffViewMode?: DiffViewMode;
   aider: {
     options: string;
@@ -727,12 +727,12 @@ export interface McpServerConfig {
 }
 
 export interface VersionsInfo {
-  aiderDeskCurrentVersion?: string | null;
+  reactorCurrentVersion?: string | null;
   aiderCurrentVersion?: string | null;
-  aiderDeskAvailableVersion?: string | null;
+  reactorAvailableVersion?: string | null;
   aiderAvailableVersion?: string | null;
-  aiderDeskDownloadProgress?: number;
-  aiderDeskNewVersionReady?: boolean;
+  reactorDownloadProgress?: number;
+  reactorNewVersionReady?: boolean;
   releaseNotes?: string | null;
 }
 

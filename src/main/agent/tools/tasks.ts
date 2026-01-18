@@ -20,7 +20,7 @@ import { fileExists } from '@common/utils';
 
 import { ApprovalManager } from './approval-manager';
 
-import { AIDER_DESK_TASKS_DIR, PROBE_BINARY_PATH } from '@/constants';
+import { REACTOR_TASKS_DIR, PROBE_BINARY_PATH } from '@/constants';
 import logger from '@/logger';
 import { isAbortError } from '@/utils/errors';
 import { Task } from '@/task';
@@ -366,7 +366,7 @@ export const createTasksToolset = (settings: SettingsData, task: Task, profile: 
           return `Task with ID ${taskId} not found`;
         }
 
-        const contextFilePath = path.join(targetTask.project.baseDir, AIDER_DESK_TASKS_DIR, taskId, 'context.json');
+        const contextFilePath = path.join(targetTask.project.baseDir, REACTOR_TASKS_DIR, taskId, 'context.json');
 
         const exists = await fileExists(contextFilePath);
         if (!exists) {
@@ -402,7 +402,7 @@ export const createTasksToolset = (settings: SettingsData, task: Task, profile: 
         logger.error('Error executing task search command:', error);
         task.addLogMessage(
           'error',
-          `Task search failed with error:\n\n${errorMessage}\n\nPlease, consider reporting an issue at https://github.com/hotovo/aider-desk/issues. Thank you.`,
+          `Task search failed with error:\n\n${errorMessage}\n\nPlease, consider reporting an issue at https://github.com/DrOlu/reactor/issues. Thank you.`,
         );
         return errorMessage;
       }
@@ -469,7 +469,7 @@ export const createSearchParentTaskTool = (task: Task, promptContext?: PromptCon
           return `Parent task with ID ${parentTaskId} not found`;
         }
 
-        const contextFilePath = path.join(parentTask.project.baseDir, AIDER_DESK_TASKS_DIR, parentTaskId, 'context.json');
+        const contextFilePath = path.join(parentTask.project.baseDir, REACTOR_TASKS_DIR, parentTaskId, 'context.json');
 
         const exists = await fileExists(contextFilePath);
         if (!exists) {
@@ -500,7 +500,7 @@ export const createSearchParentTaskTool = (task: Task, promptContext?: PromptCon
         logger.error('Error executing parent task search command:', error);
         task.addLogMessage(
           'error',
-          `Parent task search failed with error:\n\n${errorMessage}\n\nPlease, consider reporting an issue at https://github.com/hotovo/aider-desk/issues. Thank you.`,
+          `Parent task search failed with error:\n\n${errorMessage}\n\nPlease, consider reporting an issue at https://github.com/DrOlu/reactor/issues. Thank you.`,
         );
         return errorMessage;
       }

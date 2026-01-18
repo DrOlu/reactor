@@ -44,7 +44,7 @@ import { DataManager } from '@/data-manager';
 import { TerminalManager } from '@/terminal/terminal-manager';
 import logger from '@/logger';
 import { getDefaultProjectSettings, getEffectiveEnvironmentVariable, getFilePathSuggestions, isProjectPath, isValidPath, scrapeWeb } from '@/utils';
-import { AIDER_DESK_TMP_DIR, LOGS_DIR } from '@/constants';
+import { REACTOR_TMP_DIR, LOGS_DIR } from '@/constants';
 import { EventManager } from '@/events';
 import { isElectron } from '@/app';
 
@@ -286,7 +286,7 @@ export class EventsHandler {
         return;
       }
 
-      const imagesDir = path.join(AIDER_DESK_TMP_DIR, 'images');
+      const imagesDir = path.join(REACTOR_TMP_DIR, 'images');
       const absoluteImagesDir = path.join(baseDir, imagesDir);
       await fs.mkdir(absoluteImagesDir, { recursive: true });
 
@@ -553,7 +553,7 @@ export class EventsHandler {
 
       let targetFilePath: string;
       if (!filePath) {
-        targetFilePath = path.join(baseDir, AIDER_DESK_TMP_DIR, 'web-sites', `${normalizedUrl}.md`);
+        targetFilePath = path.join(baseDir, REACTOR_TMP_DIR, 'web-sites', `${normalizedUrl}.md`);
         await fs.mkdir(path.dirname(targetFilePath), { recursive: true });
       } else {
         if (path.isAbsolute(filePath)) {
@@ -689,8 +689,8 @@ export class EventsHandler {
     return await this.versionsManager.getVersions(forceRefresh);
   }
 
-  async downloadLatestAiderDesk(): Promise<void> {
-    await this.versionsManager.downloadLatestAiderDesk();
+  async downloadLatestReactor(): Promise<void> {
+    await this.versionsManager.downloadLatestReactor();
   }
 
   getReleaseNotes(): string | null {

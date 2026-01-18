@@ -18,7 +18,7 @@ describe('Tasks Tools - search_task', () => {
   const TASKS_TOOL_GROUP_NAME = 'tasks';
   const TOOL_GROUP_NAME_SEPARATOR = '---';
   const TASKS_TOOL_SEARCH_TASK = 'search_task';
-  const AIDER_DESK_TASKS_DIR = '.aider-desk/tasks';
+  const REACTOR_TASKS_DIR = '.reactor/tasks';
 
   beforeEach(async () => {
     vi.clearAllMocks();
@@ -425,7 +425,7 @@ describe('Tasks Tools - search_task', () => {
       }
 
       // The context file path should be constructed correctly
-      const expectedPath = path.join('/my/project', AIDER_DESK_TASKS_DIR, 'task-id-123', 'context.json');
+      const expectedPath = path.join('/my/project', REACTOR_TASKS_DIR, 'task-id-123', 'context.json');
       // Just verify that path construction logic exists
       expect(expectedPath).toContain('task-id-123');
       expect(expectedPath).toContain('context.json');

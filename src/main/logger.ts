@@ -24,7 +24,7 @@ const logger = winston.createLogger({
 });
 
 // If we're not in production OR running in headless mode (Docker), also log to the console
-if (process.env.NODE_ENV !== 'production' || process.env.AIDER_DESK_HEADLESS === 'true') {
+if (process.env.NODE_ENV !== 'production' || process.env.REACTOR_HEADLESS === 'true') {
   logger.add(
     new winston.transports.Console({
       format: winston.format.combine(winston.format.colorize(), winston.format.simple()),

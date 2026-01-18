@@ -20,7 +20,7 @@ import { WorktreeManager } from '@/worktrees';
 import { MemoryManager } from '@/memory/memory-manager';
 import { HookManager } from '@/hooks/hook-manager';
 import { PromptsManager } from '@/prompts';
-import { AIDER_DESK_WATCH_FILES_LOCK } from '@/constants';
+import { REACTOR_WATCH_FILES_LOCK } from '@/constants';
 import { determineMainModel, determineWeakModel } from '@/utils';
 
 export class Project {
@@ -156,7 +156,7 @@ export class Project {
     // Migrate sessions to tasks before starting
     await migrateSessionsToTasks(this);
 
-    const tasksDir = path.join(this.baseDir, '.aider-desk', 'tasks');
+    const tasksDir = path.join(this.baseDir, '.reactor', 'tasks');
 
     try {
       if (!(await fileExists(tasksDir))) {
@@ -328,7 +328,7 @@ export class Project {
   }
 
   private async deleteTaskInternal(taskId: string): Promise<void> {
-    const taskDir = path.join(this.baseDir, '.aider-desk', 'tasks', taskId);
+    const taskDir = path.join(this.baseDir, '.reactor', 'tasks', taskId);
 
     // Close the task if it's loaded
     const task = this.tasks.get(taskId);
@@ -425,7 +425,7 @@ export class Project {
     await this.worktreeManager.close(this.baseDir);
 
     // Remove watch-files lock file if it exists
-    const lockFilePath = path.join(this.baseDir, AIDER_DESK_WATCH_FILES_LOCK);
+    const lockFilePath = path.join(this.baseDir, REACTOR_WATCH_FILES_LOCK);
     try {
       await fs.unlink(lockFilePath);
       logger.debug('Removed watch-files lock file', { lockFilePath });

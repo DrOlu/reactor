@@ -38,7 +38,7 @@ import { zaiPlanProviderStrategy } from './providers/zai-plan';
 import type { LanguageModelV2 } from '@ai-sdk/provider';
 import type { JSONValue, LanguageModelUsage, ToolSet } from 'ai';
 
-import { AIDER_DESK_CACHE_DIR, AIDER_DESK_DATA_DIR } from '@/constants';
+import { REACTOR_CACHE_DIR, REACTOR_DATA_DIR } from '@/constants';
 import logger from '@/logger';
 import { Store } from '@/store';
 import { EventManager } from '@/events';
@@ -46,7 +46,7 @@ import { Task } from '@/task/task';
 import { AiderModelMapping, CacheControl, LlmProviderRegistry, LlmProviderStrategy } from '@/models/types';
 
 const MODELS_META_URL = 'https://models.dev/api.json';
-const MODELS_FILE = path.join(AIDER_DESK_DATA_DIR, 'models.json');
+const MODELS_FILE = path.join(REACTOR_DATA_DIR, 'models.json');
 
 type ModelsMetaResponse = Record<
   string,
@@ -128,7 +128,7 @@ export class ModelManager {
   }
 
   private async loadModelsInfo(): Promise<void> {
-    const cacheFile = path.join(AIDER_DESK_CACHE_DIR, 'models-meta.json');
+    const cacheFile = path.join(REACTOR_CACHE_DIR, 'models-meta.json');
     let cacheLoaded = false;
 
     // Try to load from cache first
@@ -158,7 +158,7 @@ export class ModelManager {
 
       // Save the fresh data to cache
       try {
-        await fs.mkdir(AIDER_DESK_CACHE_DIR, { recursive: true });
+        await fs.mkdir(REACTOR_CACHE_DIR, { recursive: true });
         await fs.writeFile(cacheFile, JSON.stringify(data, null, 2));
         logger.info('Saved models info to cache');
       } catch (error) {

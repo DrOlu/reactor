@@ -35,8 +35,8 @@ export class VersionsManager {
     }
 
     logger.info('Checking for version updates...');
-    // Get AiderDesk version using app.getVersion()
-    const aiderDeskCurrentVersion = app.getVersion();
+    // Get Reactor version using app.getVersion()
+    const reactorCurrentVersion = app.getVersion();
 
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const autoUpdater = require('electron-updater').autoUpdater;
@@ -45,40 +45,40 @@ export class VersionsManager {
     const aiderCurrentVersion = await getCurrentPythonLibVersion('aider-chat');
     const aiderAvailableVersion = await getLatestPythonLibVersion('aider-chat');
 
-    let aiderDeskAvailableVersion: string | null = null;
+    let reactorAvailableVersion: string | null = null;
     let releaseNotes: string | null = null;
-    if (!aiderDeskCurrentVersion.endsWith('-dev') && !this.versionsInfo?.aiderDeskNewVersionReady && !this.versionsInfo?.aiderDeskDownloadProgress) {
+    if (!reactorCurrentVersion.endsWith('-dev') && !this.versionsInfo?.reactorNewVersionReady && !this.versionsInfo?.reactorDownloadProgress) {
       try {
         const result = await autoUpdater.checkForUpdates();
-        if (result && result.updateInfo.version !== aiderDeskCurrentVersion) {
-          aiderDeskAvailableVersion = result.updateInfo.version;
+        if (result && result.updateInfo.version !== reactorCurrentVersion) {
+          reactorAvailableVersion = result.updateInfo.version;
           releaseNotes = result.updateInfo.releaseNotes as string | null;
         } else {
-          aiderDeskAvailableVersion = null;
+          reactorAvailableVersion = null;
           releaseNotes = null;
         }
       } catch (error) {
         if (error instanceof Error) {
           // Don't show error box for this common case
           if (error.message !== 'No published versions on GitHub') {
-            aiderDeskAvailableVersion = null;
+            reactorAvailableVersion = null;
           }
         }
-        logger.error('Failed to check for AiderDesk updates', { error });
+        logger.error('Failed to check for Reactor updates', { error });
       }
 
       // Check if auto-update is enabled and a new version was found
-      if (aiderDeskAvailableVersion && this.store.getSettings().aiderDeskAutoUpdate) {
+      if (reactorAvailableVersion && this.store.getSettings().reactorAutoUpdate) {
         logger.info('Auto-update enabled and new version found. Starting download...');
-        void this.downloadLatestAiderDesk();
+        void this.downloadLatestReactor();
       }
     }
 
     this.updateVersionsInfo({
-      aiderDeskCurrentVersion,
+      reactorCurrentVersion,
       aiderCurrentVersion,
       aiderAvailableVersion,
-      aiderDeskAvailableVersion,
+      reactorAvailableVersion,
       releaseNotes,
     });
 
@@ -106,7 +106,7 @@ export class VersionsManager {
     autoUpdater.autoInstallOnAppQuit = true; // Install on quit after download
     if (isDev()) {
       autoUpdater.forceDevUpdateConfig = true;
-      process.env.APPIMAGE = path.join(__dirname, 'dist', `aider-desk-${app.getVersion()}.AppImage`);
+      process.env.APPIMAGE = path.join(__dirname, 'dist', `reactor-${app.getVersion()}.AppImage`);
     }
 
     autoUpdater.on('download-progress', (progressObj) => {
@@ -115,16 +115,16 @@ export class VersionsManager {
       });
 
       this.updateVersionsInfo({
-        aiderDeskDownloadProgress: Math.max(0, Math.min(100, progressObj.percent)),
+        reactorDownloadProgress: Math.max(0, Math.min(100, progressObj.percent)),
       });
     });
 
     autoUpdater.on('update-downloaded', (event) => {
       logger.info('[AutoUpdater] Update downloaded', { event });
       this.updateVersionsInfo({
-        aiderDeskNewVersionReady: true,
-        aiderDeskAvailableVersion: undefined,
-        aiderDeskDownloadProgress: undefined,
+        reactorNewVersionReady: true,
+        reactorAvailableVersion: undefined,
+        reactorDownloadProgress: undefined,
       });
 
       if (event.releaseNotes) {
@@ -135,7 +135,7 @@ export class VersionsManager {
     autoUpdater.on('error', (error) => {
       logger.error('[AutoUpdater] Error during update process', { error });
       this.updateVersionsInfo({
-        aiderDeskDownloadProgress: undefined,
+        reactorDownloadProgress: undefined,
       });
     });
 
@@ -160,17 +160,17 @@ export class VersionsManager {
     }
   }
 
-  public async downloadLatestAiderDesk(): Promise<void> {
+  public async downloadLatestReactor(): Promise<void> {
     const app = getElectronApp();
     if (!app) {
-      logger.info('Electron app not available, skipping AiderDesk update download.');
+      logger.info('Electron app not available, skipping Reactor update download.');
       return;
     }
 
     // eslint-disable-next-line @typescript-eslint/no-require-imports
     const autoUpdater = require('electron-updater').autoUpdater;
 
-    logger.info('Starting AiderDesk update download...');
+    logger.info('Starting Reactor update download...');
     try {
       // Check for updates first to ensure we have the latest info
       const updateCheckResult = await autoUpdater.checkForUpdates();
@@ -186,9 +186,9 @@ export class VersionsManager {
         logger.info('No new update found or update check failed.');
       }
     } catch (error) {
-      logger.error('Failed to download AiderDesk update', { error });
+      logger.error('Failed to download Reactor update', { error });
       this.updateVersionsInfo({
-        aiderDeskDownloadProgress: undefined,
+        reactorDownloadProgress: undefined,
       });
       autoUpdater.autoDownload = false; // Ensure it's reset on error
     }

@@ -98,7 +98,7 @@ describe('Project - createNewTask', () => {
             language: 'en',
             renderMarkdown: true,
             virtualizedRendering: true,
-            aiderDeskAutoUpdate: true,
+            reactorAutoUpdate: true,
             promptBehavior: {
               suggestionMode: 'automatically',
               suggestionDelay: 0,
