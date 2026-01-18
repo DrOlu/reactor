@@ -238,30 +238,30 @@ Reactor provides multiple ways to optimize your AI spending:
 
 #### Disabling Auto Updates
 
-To prevent automatic updates, set the `AIDER_DESK_NO_AUTO_UPDATE` environment variable:
+To prevent automatic updates, set the `REACTOR_NO_AUTO_UPDATE` environment variable:
 
-- **macOS/Linux:** `export AIDER_DESK_NO_AUTO_UPDATE=true`
-- **Windows:** `$env:AIDER_DESK_NO_AUTO_UPDATE = "true"`
+- **macOS/Linux:** `export REACTOR_NO_AUTO_UPDATE=true`
+- **Windows:** `$env:REACTOR_NO_AUTO_UPDATE = "true"`
 
 ### Custom Aider Version
 
-By default, Reactor installs the latest version of the `aider-chat` Python package. If you need to use a specific version of Aider, you can set the `AIDER_DESK_AIDER_VERSION` environment variable.
+By default, Reactor installs the latest version of the `aider-chat` Python package. If you need to use a specific version of Aider, you can set the `REACTOR_AIDER_VERSION` environment variable.
 
 For example, to use Aider version 0.83.1:
 
 ```bash
 # macOS/Linux
-export AIDER_DESK_AIDER_VERSION=0.83.1
+export REACTOR_AIDER_VERSION=0.83.1
 
 # Windows (PowerShell)
-$env:AIDER_DESK_AIDER_VERSION = "0.83.1"
+$env:REACTOR_AIDER_VERSION = "0.83.1"
 ```
 
 You can also specify a git URL for installing a development version of Aider:
 
 ```bash
 # macOS/Linux
-export AIDER_DESK_AIDER_VERSION=git+https://github.com/user/aider.git@branch-name
+export REACTOR_AIDER_VERSION=git+https://github.com/user/aider.git@branch-name
 ```
 
 This variable will be used during the initial setup and when Reactor checks for updates. For more detailed information, please refer to [our docs](https://github.com/DrOlu/reactor/docs/advanced/custom-aider-version).

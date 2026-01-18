@@ -5,7 +5,7 @@ sidebar_label: "REST API"
 
 # REST API
 
-Reactor exposes a comprehensive REST API that allows external tools, such as IDE plugins, web applications, and automation scripts, to interact with the application programmatically. The API runs on the same port as the main application, which defaults to `24337` but can be configured with the `AIDER_DESK_PORT` environment variable.
+Reactor exposes a comprehensive REST API that allows external tools, such as IDE plugins, web applications, and automation scripts, to interact with the application programmatically. The API runs on the same port as the main application, which defaults to `24337` but can be configured with the `REACTOR_PORT` environment variable.
 
 ## Overview
 

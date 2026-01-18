@@ -879,7 +879,7 @@ class Connector:
 
   async def on_connect(self):
     """Handle connection event."""
-    self.coder.io.tool_output("---- AIDER CONNECTOR CONNECTED TO AIDER DESK ----")
+    self.coder.io.tool_output("---- AIDER CONNECTOR CONNECTED TO REACTOR ----")
 
     await self.send_action({
       "action": "init",
@@ -925,7 +925,7 @@ class Connector:
 
   async def on_disconnect(self):
     """Handle disconnection event."""
-    self.coder.io.tool_output("AIDER CONNECTOR DISCONNECTED FROM AIDER DESK")
+    self.coder.io.tool_output("AIDER CONNECTOR DISCONNECTED FROM REACTOR")
 
     # Shutdown prompt executor
     if self.prompt_executor:

@@ -9,7 +9,7 @@ Reactor uses SocketIO to provide real-time event streaming, allowing external ap
 
 ## Overview
 
-The SocketIO server runs on the same port as the REST API (default: `24337`, configurable via `AIDER_DESK_PORT`). Clients can connect and subscribe to specific event types to receive real-time updates.
+The SocketIO server runs on the same port as the REST API (default: `24337`, configurable via `REACTOR_PORT`). Clients can connect and subscribe to specific event types to receive real-time updates.
 
 ### Connection Setup
 

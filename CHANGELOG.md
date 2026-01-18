@@ -274,7 +274,7 @@
 ## [0.34.0]
 
 - properly using env vars from Settings -> Aider when loading provider models
-- AIDER_DESK_DATA_DIR now properly respected
+- REACTOR_DATA_DIR now properly respected
 - added support for ARGUMENTS placeholder in custom commands
 - reloading project keeps the current session
 - improved performance of model library by using virtualized table for models
@@ -292,7 +292,7 @@
 
 - fixed issue with diff edit format not being set correctly on startup
 - added model library for provider and model management
-- allow to customize AIDER_DESK_DATA_DIR via environment variable
+- allow to customize REACTOR_DATA_DIR via environment variable
 - added support for Azure provider
 - fixed not being possible to interrupt agent run when switching between projects
 - fixed issue with context files not being highlighted in All files mode on Windows
@@ -342,7 +342,7 @@
 - showing message when generating commit message after modifications
 - added 'Can use subagents' configuration to Agent profile
 - added events manager layer and support for Socket.IO event updates
-- added headless mode with AIDER_DESK_HEADLESS=true environment variable
+- added headless mode with REACTOR_HEADLESS=true environment variable
 - added full API layer for external clients
 - added context memory option to Subagents to preserve context within the same conversation
 
@@ -413,7 +413,7 @@
 
 - improved connection and communication with Aider
 - reading cached tokens when working with Aider modes
-- fixed start up with using local Aider installation via AIDER_DESK_AIDER_VERSION
+- fixed start up with using local Aider installation via REACTOR_AIDER_VERSION
 - fixed command output messages in the context
 - added hourly, daily, monthly, yearly aggregation for dashboard data
 - added support for non-git projects
@@ -513,13 +513,13 @@
 - tool result containing image data is passed as image message to models
 - added duplicate tool call prevention in Agent
 - normalizing tool IDs before sending them to LLM
-- added AIDER_DESK_AIDER_VERSION environment variable to use custom version of Aider
+- added REACTOR_AIDER_VERSION environment variable to use custom version of Aider
 - fixed claude-4-sonnet-20250514 default model
 - added caching info for Requesty provider
 - setting to use Vim bindings in Prompt field
 - using uv for Python package management
 - respecting model and weak-model set in .aider.conf.yaml (project dir and $HOME) when opening project
-- added support for extra Python packages to be installed on start via AIDER_DESK_EXTRA_PYTHON_PACKAGES environment variable
+- added support for extra Python packages to be installed on start via REACTOR_EXTRA_PYTHON_PACKAGES environment variable
 
 ## [0.17.0]
 
@@ -795,4 +795,4 @@
 - using python executable to install packages instead of pip
 - added `/map` and `/map-refresh` commands for repository mapping functionality
 - prevent infinite loading state after application refresh
-- added AIDER_DESK_NO_AUTO_UPDATE environment variable to disable automatic updates
+- added REACTOR_NO_AUTO_UPDATE environment variable to disable automatic updates

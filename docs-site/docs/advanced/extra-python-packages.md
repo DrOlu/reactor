@@ -3,9 +3,9 @@ title: "Extra Python Packages"
 sidebar_label: "Extra Python Packages"
 ---
 
-# AIDER_DESK_EXTRA_PYTHON_PACKAGES
+# REACTOR_EXTRA_PYTHON_PACKAGES
 
-The `AIDER_DESK_EXTRA_PYTHON_PACKAGES` environment variable allows you to install additional Python packages into Reactor's virtual environment. This can be useful for a few reasons:
+The `REACTOR_EXTRA_PYTHON_PACKAGES` environment variable allows you to install additional Python packages into Reactor's virtual environment. This can be useful for a few reasons:
 
 -   Installing new libraries that you want to be available to `aider`.
 -   Overriding specific versions of `aider`'s dependencies.
@@ -17,21 +17,21 @@ You can set this environment variable before launching Reactor. The value should
 **macOS/Linux:**
 
 ```sh
-export AIDER_DESK_EXTRA_PYTHON_PACKAGES="package1,package2==1.2.3"
+export REACTOR_EXTRA_PYTHON_PACKAGES="package1,package2==1.2.3"
 ./Reactor-*.AppImage
 ```
 
 **Windows (Command Prompt):**
 
 ```cmd
-set AIDER_DESK_EXTRA_PYTHON_PACKAGES="package1,package2==1.2.3"
+set REACTOR_EXTRA_PYTHON_PACKAGES="package1,package2==1.2.3"
 Reactor.exe
 ```
 
 **Windows (PowerShell):**
 
 ```powershell
-$env:AIDER_DESK_EXTRA_PYTHON_PACKAGES="package1,package2==1.2.3"
+$env:REACTOR_EXTRA_PYTHON_PACKAGES="package1,package2==1.2.3"
 .\Reactor.exe
 ```
 
@@ -42,7 +42,7 @@ $env:AIDER_DESK_EXTRA_PYTHON_PACKAGES="package1,package2==1.2.3"
 Aider uses the `Pygments` library for code analysis and token counting. If you want to use the very latest, unreleased version of `Pygments` directly from their git repository, you can do so like this:
 
 ```sh
-export AIDER_DESK_EXTRA_PYTHON_PACKAGES="git+https://github.com/pygments/pygments.git@master"
+export REACTOR_EXTRA_PYTHON_PACKAGES="git+https://github.com/pygments/pygments.git@master"
 ```
 
 When you start Reactor, it will install the specified version of Pygments.
@@ -52,7 +52,7 @@ When you start Reactor, it will install the specified version of Pygments.
 If you need to install a package like `scikit-learn`, you can specify it:
 
 ```sh
-export AIDER_DESK_EXTRA_PYTHON_PACKAGES="scikit-learn"
+export REACTOR_EXTRA_PYTHON_PACKAGES="scikit-learn"
 ```
 
 ### Combining Multiple Packages
@@ -60,7 +60,7 @@ export AIDER_DESK_EXTRA_PYTHON_PACKAGES="scikit-learn"
 You can provide a comma-separated list to install or override multiple packages at once:
 
 ```sh
-export AIDER_DESK_EXTRA_PYTHON_PACKAGES="scikit-learn==1.0.2,pandas,git+https://github.com/pygments/pygments.git@master"
+export REACTOR_EXTRA_PYTHON_PACKAGES="scikit-learn==1.0.2,pandas,git+https://github.com/pygments/pygments.git@master"
 ```
 
 ## Important Notes

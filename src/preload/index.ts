@@ -114,7 +114,7 @@ const api: ApplicationAPI = {
   handoffConversation: (baseDir, taskId, focus) => ipcRenderer.invoke('handoff-conversation', baseDir, taskId, focus),
   setZoomLevel: (level) => ipcRenderer.invoke('set-zoom-level', level),
   getVersions: (forceRefresh = false) => ipcRenderer.invoke('get-versions', forceRefresh),
-  downloadLatestReactor: () => ipcRenderer.invoke('download-latest-aiderdesk'),
+  downloadLatestReactor: () => ipcRenderer.invoke('download-latest-reactor'),
 
   getReleaseNotes: () => ipcRenderer.invoke('get-release-notes'),
   clearReleaseNotes: () => ipcRenderer.invoke('clear-release-notes'),

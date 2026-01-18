@@ -8,7 +8,7 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     env: {
-      AIDER_DESK_NODE_TESTING: 'true',
+      REACTOR_NODE_TESTING: 'true',
     },
     include: [
       'src/main/**/__tests__/**/*.{test,spec}.{ts,tsx}',

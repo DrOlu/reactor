@@ -18,7 +18,7 @@ Add the following configuration to your MCP client settings, adjusting paths as 
       "command": "node",
       "args": ["path-to-appdata/reactor/mcp-server/reactor-mcp-server.js", "/path/to/project"],
       "env": {
-        "AIDER_DESK_API_BASE_URL": "http://localhost:24337/api"
+        "REACTOR_API_BASE_URL": "http://localhost:24337/api"
       }
     }
   }
@@ -36,7 +36,7 @@ Add the following configuration to your MCP client settings, adjusting paths as 
       "command": "node",
       "args": ["/path/to/home/Library/Application Support/reactor/mcp-server/reactor-mcp-server.js", "/path/to/project"],
       "env": {
-        "AIDER_DESK_API_BASE_URL": "http://localhost:24337/api"
+        "REACTOR_API_BASE_URL": "http://localhost:24337/api"
       }
     }
   }
@@ -54,7 +54,7 @@ Add the following configuration to your MCP client settings, adjusting paths as 
       "command": "node",
       "args": ["/path/to/home/.config/reactor/mcp-server/reactor-mcp-server.js", "/path/to/project"],
       "env": {
-        "AIDER_DESK_API_BASE_URL": "http://localhost:24337/api"
+        "REACTOR_API_BASE_URL": "http://localhost:24337/api"
       }
     }
   }
@@ -66,7 +66,7 @@ Add the following configuration to your MCP client settings, adjusting paths as 
 ## Arguments & Environment
 
 - **Command Argument 1:** Project directory path (required).
-- **`AIDER_DESK_API_BASE_URL`:** Base URL of the running Reactor API (default: `http://localhost:24337/api`).
+- **`REACTOR_API_BASE_URL`:** Base URL of the running Reactor API (default: `http://localhost:24337/api`).
 
 ## Available Tools via MCP
 

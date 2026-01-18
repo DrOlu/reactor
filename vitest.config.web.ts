@@ -9,7 +9,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     env: {
-      AIDER_DESK_WEB_TESTING: 'true',
+      REACTOR_WEB_TESTING: 'true',
     },
     include: ['src/renderer/**/__tests__/**/*.{test,spec}.{ts,tsx}'],
     exclude: ['node_modules', 'dist', 'out'],

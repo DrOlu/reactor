@@ -25,7 +25,7 @@ Run the container with persistent data and configuration volumes:
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 24337:24337 \
   -v /path/to/your/data:/app/data \
   -v ~/.reactor:/root/.reactor \
@@ -47,14 +47,14 @@ Reactor stores all configuration, settings, and project data in the `/app/data` 
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 24337:24337 \
-  -v ~/aiderdesk-data:/app/data \
+  -v ~/reactor-data:/app/data \
   ghcr.io/DrOlu/reactor:latest
 ```
 
 This will:
-- Create a directory `~/aiderdesk-data` on your host machine
+- Create a directory `~/reactor-data` on your host machine
 - Mount it to `/app/data` inside the container
 - Persist all settings, API keys, project configurations, and logs
 
@@ -75,9 +75,9 @@ Since the Docker container runs as the `root` user, the home directory inside th
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 24337:24337 \
-  -v ~/aiderdesk-data:/app/data \
+  -v ~/reactor-data:/app/data \
   -v ~/.reactor:/root/.reactor \
   ghcr.io/DrOlu/reactor:latest
 ```
@@ -93,24 +93,24 @@ This will:
 
 You can open projects in Reactor using two methods:
 
-#### Method 1: Using the `AIDER_DESK_PROJECTS` Environment Variable
+#### Method 1: Using the `REACTOR_PROJECTS` Environment Variable
 
-Set the `AIDER_DESK_PROJECTS` environment variable to automatically open projects when the container starts. The variable accepts a comma-separated list of project paths.
+Set the `REACTOR_PROJECTS` environment variable to automatically open projects when the container starts. The variable accepts a comma-separated list of project paths.
 
 **Example:**
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 24337:24337 \
-  -v ~/aiderdesk-data:/app/data \
+  -v ~/reactor-data:/app/data \
   -v ~/.reactor:/root/.reactor \
   -v ~/projects:/projects \
-  -e AIDER_DESK_PROJECTS="/projects/my-app,/projects/other-app" \
+  -e REACTOR_PROJECTS="/projects/my-app,/projects/other-app" \
   ghcr.io/DrOlu/reactor:latest
 ```
 
-**Important:** The project paths specified in `AIDER_DESK_PROJECTS` must be accessible from within the container. This means each project directory must be mounted as a volume.
+**Important:** The project paths specified in `REACTOR_PROJECTS` must be accessible from within the container. This means each project directory must be mounted as a volume.
 
 #### Method 2: Opening Projects via the UI
 
@@ -135,13 +135,13 @@ To access your projects from within the Docker container, you need to mount each
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 24337:24337 \
-  -v ~/aiderdesk-data:/app/data \
+  -v ~/reactor-data:/app/data \
   -v ~/.reactor:/root/.reactor \
   -v ~/projects/my-app:/projects/my-app \
   -v ~/projects/other-app:/projects/other-app \
-  -e AIDER_DESK_PROJECTS="/projects/my-app,/projects/other-app" \
+  -e REACTOR_PROJECTS="/projects/my-app,/projects/other-app" \
   ghcr.io/DrOlu/reactor:latest
 ```
 
@@ -151,7 +151,7 @@ Host machine:                     Inside container:
 ~/projects/my-app/    →         /projects/my-app/
 ~/projects/other-app/  →         /projects/other-app/
 ~/.reactor/       →         /root/.reactor/
-~/aiderdesk-data/     →         /app/data/
+~/reactor-data/     →         /app/data/
 ```
 
 ### Port Configuration
@@ -162,9 +162,9 @@ By default, Reactor runs on port `24337`. You can change the exposed port mappin
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 8080:24337 \
-  -v ~/aiderdesk-data:/app/data \
+  -v ~/reactor-data:/app/data \
   ghcr.io/DrOlu/reactor:latest
 ```
 
@@ -178,11 +178,11 @@ For production environments, you may want to enable authentication. Reactor supp
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 24337:24337 \
-  -v ~/aiderdesk-data:/app/data \
-  -e AIDER_DESK_USERNAME=admin \
-  -e AIDER_DESK_PASSWORD=your-secure-password \
+  -v ~/reactor-data:/app/data \
+  -e REACTOR_USERNAME=admin \
+  -e REACTOR_PASSWORD=your-secure-password \
   ghcr.io/DrOlu/reactor:latest
 ```
 
@@ -194,12 +194,12 @@ When you access `http://localhost:24337`, you'll be prompted for username and pa
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 24337:24337 \
-  -v ~/aiderdesk-data:/app/data \
+  -v ~/reactor-data:/app/data \
   -v ~/.reactor:/root/.reactor \
   -v ~/my-project:/workspace/project \
-  -e AIDER_DESK_PROJECTS="/workspace/project" \
+  -e REACTOR_PROJECTS="/workspace/project" \
   ghcr.io/DrOlu/reactor:latest
 ```
 
@@ -207,14 +207,14 @@ docker run -d \
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 24337:24337 \
-  -v ~/aiderdesk-data:/app/data \
+  -v ~/reactor-data:/app/data \
   -v ~/.reactor:/root/.reactor \
   -v ~/projects:/projects \
-  -e AIDER_DESK_PROJECTS="/projects/frontend,/projects/backend,/projects/api" \
-  -e AIDER_DESK_USERNAME=myuser \
-  -e AIDER_DESK_PASSWORD=mypassword \
+  -e REACTOR_PROJECTS="/projects/frontend,/projects/backend,/projects/api" \
+  -e REACTOR_USERNAME=myuser \
+  -e REACTOR_PASSWORD=mypassword \
   ghcr.io/DrOlu/reactor:latest
 ```
 
@@ -222,9 +222,9 @@ docker run -d \
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 24337:24337 \
-  -v ~/aiderdesk-data:/app/data \
+  -v ~/reactor-data:/app/data \
   -v ~/.reactor:/root/.reactor \
   -v ~/projects:/projects \
   ghcr.io/DrOlu/reactor:latest
@@ -244,14 +244,14 @@ Create a `docker-compose.yml` file:
 version: '3.8'
 
 services:
-  aiderdesk:
+  reactor:
     image: ghcr.io/DrOlu/reactor:latest
-    container_name: aiderdesk
+    container_name: reactor
     ports:
       - "24337:24337"
     volumes:
       # Persistent data directory
-      - ./aiderdesk-data:/app/data
+      - ./reactor-data:/app/data
       # Global configuration (agent profiles, skills, custom commands, hooks, prompts)
       - ~/.reactor:/root/.reactor
       # Mount your projects
@@ -259,10 +259,10 @@ services:
       - ./projects/backend:/projects/backend
     environment:
       # Auto-open projects
-      - AIDER_DESK_PROJECTS=/projects/frontend,/projects/backend
+      - REACTOR_PROJECTS=/projects/frontend,/projects/backend
       # Optional: Authentication
-      - AIDER_DESK_USERNAME=admin
-      - AIDER_DESK_PASSWORD=secure-password
+      - REACTOR_USERNAME=admin
+      - REACTOR_PASSWORD=secure-password
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "node", "-e", "require('http').get('http://localhost:24337/', (r) => {process.exit(r.statusCode === 200 || r.statusCode === 404 ? 0 : 1)}).on('error', () => process.exit(1))"]
@@ -281,9 +281,9 @@ docker-compose up -d
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 24337:24337 \
-  -v ~/aiderdesk-data:/app/data \
+  -v ~/reactor-data:/app/data \
   -v ~/.reactor:/root/.reactor \
   -v ~/projects:/projects \
   ghcr.io/DrOlu/reactor:1.0.0
@@ -309,47 +309,47 @@ If you enabled authentication, you'll be prompted to log in with the username an
 ### View Logs
 
 ```bash
-docker logs aiderdesk
+docker logs reactor
 ```
 
 ### Follow Logs in Real-time
 
 ```bash
-docker logs -f aiderdesk
+docker logs -f reactor
 ```
 
 ### Stop the Container
 
 ```bash
-docker stop aiderdesk
+docker stop reactor
 ```
 
 ### Start a Stopped Container
 
 ```bash
-docker start aiderdesk
+docker start reactor
 ```
 
 ### Remove the Container
 
 ```bash
-docker rm aiderdesk
+docker rm reactor
 ```
 
 ### Enter the Container (for debugging)
 
 ```bash
-docker exec -it aiderdesk /bin/bash
+docker exec -it reactor /bin/bash
 ```
 
 ## Environment Variables Reference
 
 | Variable | Description | Default | Required |
 |----------|-------------|---------|----------|
-| `AIDER_DESK_PORT` | Port for the web server | `24337` | No |
-| `AIDER_DESK_USERNAME` | Basic auth username | - | No |
-| `AIDER_DESK_PASSWORD` | Basic auth password | - | No |
-| `AIDER_DESK_PROJECTS` | Comma-separated list of project paths | - | No |
+| `REACTOR_PORT` | Port for the web server | `24337` | No |
+| `REACTOR_USERNAME` | Basic auth username | - | No |
+| `REACTOR_PASSWORD` | Basic auth password | - | No |
+| `REACTOR_PROJECTS` | Comma-separated list of project paths | - | No |
 
 ## Troubleshooting
 
@@ -357,7 +357,7 @@ docker exec -it aiderdesk /bin/bash
 
 Check the logs for error messages:
 ```bash
-docker logs aiderdesk
+docker logs reactor
 ```
 
 ### Cannot Access Reactor in Browser
@@ -369,26 +369,26 @@ docker logs aiderdesk
 
 2. Check the port mapping:
    ```bash
-   docker port aiderdesk
+   docker port reactor
    ```
 
 3. Ensure no firewall is blocking the port
 
 4. Try accessing from inside the container:
    ```bash
-   docker exec aiderdesk curl http://localhost:24337
+   docker exec -it reactor curl http://localhost:24337
    ```
 
 ### Projects Not Accessible
 
 1. Verify the project directory is mounted:
    ```bash
-   docker inspect aiderdesk | grep -A 10 Mounts
+   docker inspect reactor | grep -A 10 Mounts
    ```
 
 2. Check the path exists inside the container:
    ```bash
-   docker exec aiderdesk ls -la /projects/my-app
+   docker exec -it reactor ls -la /projects/my-app
    ```
 
 3. Ensure you're using the correct path when opening projects (container path, not host path)
@@ -397,7 +397,7 @@ docker logs aiderdesk
 
 Ensure you're mounting the `/app/data` volume:
 ```bash
--v ~/aiderdesk-data:/app/data
+-v ~/reactor-data:/app/data
 ```
 
 Without this volume mount, all data will be lost when the container is removed.
@@ -418,7 +418,7 @@ If your agent profiles, skills, custom commands, hooks, or prompts are not persi
 
 3. Check if it's mounted correctly inside the container:
    ```bash
-   docker exec aiderdesk ls -la /root/.reactor
+   docker exec -it reactor ls -la /root/.reactor
    ```
 
 **Note:** The `~/.reactor` directory will be created automatically the first time you run Reactor outside of Docker, or you can create it manually before running the container.
@@ -431,9 +431,9 @@ If you encounter permission errors accessing mounted volumes:
 2. Consider using the same user ID for the container:
    ```bash
    docker run -d \
-     --name aiderdesk \
+     --name reactor \
      -p 24337:24337 \
-     -v ~/aiderdesk-data:/app/data \
+     -v ~/reactor-data:/app/data \
      -u $(id -u):$(id -g) \
      ghcr.io/DrOlu/reactor:latest
    ```
@@ -450,15 +450,15 @@ The container includes a health check that verifies the server is responding. If
 
 ### Custom Aider Version
 
-You can use a custom version of Aider by setting the `AIDER_DESK_AIDER_VERSION` environment variable (see [Custom Aider Version](./custom-aider-version.md) for details):
+You can use a custom version of Aider by setting the `REACTOR_AIDER_VERSION` environment variable (see [Custom Aider Version](./custom-aider-version.md) for details):
 
 ```bash
 docker run -d \
-  --name aiderdesk \
+  --name reactor \
   -p 24337:24337 \
-  -v ~/aiderdesk-data:/app/data \
+  -v ~/reactor-data:/app/data \
   -v ~/.reactor:/root/.reactor \
-  -e AIDER_DESK_AIDER_VERSION="0.36.1" \
+  -e REACTOR_AIDER_VERSION="0.36.1" \
   ghcr.io/DrOlu/reactor:latest
 ```
 

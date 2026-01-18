@@ -7,7 +7,7 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     env: {
-      AIDER_DESK_MCP_TESTING: 'true',
+      REACTOR_MCP_TESTING: 'true',
     },
     include: ['src/mcp-server/**/__tests__/**/*.{test,spec}.{ts,tsx}'],
     exclude: ['node_modules', 'dist', 'out'],
