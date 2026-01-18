@@ -11,7 +11,7 @@ jobs:
       image: electronuserland/builder
       env:
         TAR_OPTIONS: "--format=ustar"
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: "actions/checkout@v1"
@@ -35,7 +35,7 @@ jobs:
 
       - name: Upload backwards compatible x64 AppImage (no x64 suffix)
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           APPIMAGE_ARCH=$(ls -1 dist/*.AppImage | grep -E -- '-(x64|x86_64)\.AppImage$' | head -n 1)
           if [ -z "$APPIMAGE_ARCH" ]; then
@@ -66,7 +66,7 @@ jobs:
 
       - name: Add compat AppImage entry to latest-linux.yml and upload to release
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Update latest-linux.yml with compat AppImage entry
           node - <<'NODE'
@@ -119,7 +119,7 @@ jobs:
     runs-on: ubuntu-22.04-arm
     env:
       TAR_OPTIONS: "--format=ustar"
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: "actions/checkout@v1"
@@ -181,7 +181,7 @@ jobs:
 
       - name: Release Windows
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run build && npx electron-builder --win -p always
 
   release-macos-x64:
@@ -197,20 +197,10 @@ jobs:
 
       - run: npm install --arch=x64
 
-      - name: Create certificate.p12
-        run: echo "$encoded_p12" | base64 --decode > certificate.p12
-        env:
-          encoded_p12: ${{ secrets.CSC_BASE64 }}
-
       - name: Release macOS x64
         env:
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-          CSC_LINK: "./certificate.p12"
-          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: false
         run: npm run build:mac -- --x64 -p always
 
       - name: Upload latest-mac.yml artifact
@@ -232,20 +222,10 @@ jobs:
 
       - run: npm install --arch=arm64
 
-      - name: Create certificate.p12
-        run: echo "$encoded_p12" | base64 --decode > certificate.p12
-        env:
-          encoded_p12: ${{ secrets.CSC_BASE64 }}
-
       - name: Release macOS arm64
         env:
-          APPLE_ID: ${{ secrets.APPLE_ID }}
-          APPLE_APP_SPECIFIC_PASSWORD: ${{ secrets.APPLE_APP_SPECIFIC_PASSWORD }}
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
-          CSC_LINK: "./certificate.p12"
-          CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: false
         run: npm run build:mac -- --arm64 -p always
 
       - name: Upload latest-mac.yml artifact
@@ -258,7 +238,7 @@ jobs:
     name: Release Docker image
     runs-on: ubuntu-latest
     env:
-      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - uses: "actions/checkout@v1"
@@ -348,7 +328,7 @@ jobs:
       - name: Find draft release tag
         id: find-release
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Get the draft release tag
           RELEASE_TAG=$(gh release list --limit 1 --json tagName,isDraft --jq '.[] | select(.isDraft == true) | .tagName')
@@ -356,7 +336,7 @@ jobs:
 
       - name: Upload combined yml to release
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Upload the combined latest-mac.yml to the GitHub release
           gh release upload ${{ steps.find-release.outputs.release_tag }} latest-mac.yml --clobber

@@ -61,12 +61,13 @@ jobs:
             echo "has_changes=true" >> $GITHUB_OUTPUT
           else
             echo "Merge conflict detected, attempting to resolve..."
-            # Accept our changes for branding files
+            # Accept our changes for branding files and workflows
             git checkout --ours package.json electron-builder.yml
             git checkout --ours build/icon.png build/icon.icns build/icon.ico
             git checkout --ours resources/icon.png
             git checkout --ours src/renderer/favicon.ico
             git checkout --ours docs-site/static/img/icon.png docs-site/static/img/favicon.ico
+            git checkout --ours .github/workflows/release.yml .github/workflows/build.yml .github/workflows/sync-upstream.yml || true
             git add -A
             git commit -m "Sync with upstream aider-desk (resolved conflicts, kept Reactor branding)"
             echo "has_changes=true" >> $GITHUB_OUTPUT
