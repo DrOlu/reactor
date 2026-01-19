@@ -6004,7 +6004,7 @@ import { AgentProfile, PromptContext, ToolApprovalState } from '@common/types';
 ⋮----
 import { ApprovalManager } from './approval-manager';
 ⋮----
-import { AIDER_DESK_DIR } from '@/constants';
+import { REACTOR_DIR } from '@/constants';
 import { Task } from '@/task';
 ⋮----
 type SkillLocation = 'global' | 'project';
@@ -6108,7 +6108,7 @@ import { fileExists } from '@common/utils';
 ⋮----
 import { ApprovalManager } from './approval-manager';
 ⋮----
-import { AIDER_DESK_TASKS_DIR, PROBE_BINARY_PATH } from '@/constants';
+import { REACTOR_TASKS_DIR, PROBE_BINARY_PATH } from '@/constants';
 import logger from '@/logger';
 import { isAbortError } from '@/utils/errors';
 import { Task } from '@/task';
@@ -6188,7 +6188,7 @@ import { v4 as uuidv4 } from 'uuid';
 ⋮----
 import type { AgentProfile } from '@common/types';
 ⋮----
-import { AIDER_DESK_AGENTS_DIR, AIDER_DESK_RULES_DIR } from '@/constants';
+import { REACTOR_AGENTS_DIR, REACTOR_RULES_DIR } from '@/constants';
 import logger from '@/logger';
 import { EventManager } from '@/events';
 import { deriveDirName } from '@/utils';
@@ -6461,7 +6461,7 @@ import { extractReasoningMiddleware } from './middlewares/extract-reasoning-midd
 ⋮----
 import { MemoryManager } from '@/memory/memory-manager';
 import { PromptsManager } from '@/prompts';
-import { AIDER_DESK_PROJECT_RULES_DIR } from '@/constants';
+import { REACTOR_PROJECT_RULES_DIR } from '@/constants';
 import { Task } from '@/task';
 import { Store } from '@/store';
 import logger from '@/logger';
@@ -7051,7 +7051,7 @@ import debounce from 'lodash/debounce';
 ⋮----
 import type { CustomCommand } from '@common/types';
 ⋮----
-import { AIDER_DESK_COMMANDS_DIR } from '@/constants';
+import { REACTOR_COMMANDS_DIR } from '@/constants';
 import logger from '@/logger';
 import { Project } from '@/project/project';
 ⋮----
@@ -7419,7 +7419,7 @@ import { HookContext, HookContextImpl } from './hook-context';
 ⋮----
 import { Task } from '@/task/task';
 import { Project } from '@/project/project';
-import { AIDER_DESK_HOOKS_DIR, AIDER_DESK_GLOBAL_HOOKS_DIR } from '@/constants';
+import { REACTOR_HOOKS_DIR, REACTOR_GLOBAL_HOOKS_DIR } from '@/constants';
 import logger from '@/logger';
 import { ResponseMessage } from '@/messages';
 ⋮----
@@ -7489,7 +7489,7 @@ import { v4 as uuidv4 } from 'uuid';
 ⋮----
 import type { FeatureExtractionPipeline } from '@huggingface/transformers';
 ⋮----
-import { AIDER_DESK_CACHE_DIR, AIDER_DESK_MEMORY_FILE } from '@/constants';
+import { REACTOR_CACHE_DIR, REACTOR_MEMORY_FILE } from '@/constants';
 import logger from '@/logger';
 import { Store } from '@/store';
 ⋮----
@@ -8417,7 +8417,7 @@ import { createOpenRouter } from '@openrouter/ai-sdk-provider';
 import type { LanguageModelUsage } from 'ai';
 import type { LanguageModelV2 } from '@ai-sdk/provider';
 ⋮----
-import { AIDER_DESK_TITLE, AIDER_DESK_WEBSITE } from '@/constants';
+import { REACTOR_TITLE, REACTOR_WEBSITE } from '@/constants';
 import { AiderModelMapping, CacheControl, LlmProviderStrategy, LoadModelsResponse } from '@/models';
 import logger from '@/logger';
 import { getEffectiveEnvironmentVariable } from '@/utils';
@@ -8514,7 +8514,7 @@ import { createRequesty, type RequestyProviderMetadata } from '@requesty/ai-sdk'
 import type { LanguageModelUsage } from 'ai';
 import type { LanguageModelV2 } from '@ai-sdk/provider';
 ⋮----
-import { AIDER_DESK_TITLE, AIDER_DESK_WEBSITE } from '@/constants';
+import { REACTOR_TITLE, REACTOR_WEBSITE } from '@/constants';
 import { AiderModelMapping, CacheControl, LlmProviderStrategy, LoadModelsResponse } from '@/models';
 import logger from '@/logger';
 import { getEffectiveEnvironmentVariable } from '@/utils';
@@ -8781,7 +8781,7 @@ import { zaiPlanProviderStrategy } from './providers/zai-plan';
 import type { LanguageModelV2 } from '@ai-sdk/provider';
 import type { JSONValue, LanguageModelUsage, ToolSet } from 'ai';
 ⋮----
-import { AIDER_DESK_CACHE_DIR, AIDER_DESK_DATA_DIR } from '@/constants';
+import { REACTOR_CACHE_DIR, REACTOR_DATA_DIR } from '@/constants';
 import logger from '@/logger';
 import { Store } from '@/store';
 import { EventManager } from '@/events';
@@ -9095,7 +9095,7 @@ import { ContextFile, ContextMessage, TaskContext, TaskData } from '@common/type
 import { fileExists } from '@common/utils';
 import { DEFAULT_AIDER_MAIN_MODEL } from '@common/agent';
 ⋮----
-import { AIDER_DESK_DIR, AIDER_DESK_TASKS_DIR } from '@/constants';
+import { REACTOR_DIR, REACTOR_TASKS_DIR } from '@/constants';
 import logger from '@/logger';
 import { Project } from '@/project';
 ⋮----
@@ -9233,7 +9233,7 @@ import { WorktreeManager } from '@/worktrees';
 import { MemoryManager } from '@/memory/memory-manager';
 import { HookManager } from '@/hooks/hook-manager';
 import { PromptsManager } from '@/prompts';
-import { AIDER_DESK_WATCH_FILES_LOCK } from '@/constants';
+import { REACTOR_WATCH_FILES_LOCK } from '@/constants';
 import { determineMainModel, determineWeakModel } from '@/utils';
 ⋮----
 export class Project
@@ -9404,15 +9404,15 @@ import {
   UpdateTaskStateData,
 } from './types';
 ⋮----
-import { AIDER_DESK_DEFAULT_PROMPTS_DIR, AIDER_DESK_GLOBAL_PROMPTS_DIR, AIDER_DESK_PROMPTS_DIR } from '@/constants';
+import { REACTOR_DEFAULT_PROMPTS_DIR, REACTOR_GLOBAL_PROMPTS_DIR, REACTOR_PROMPTS_DIR } from '@/constants';
 import logger from '@/logger';
 import { Task } from '@/task';
 ⋮----
 export class PromptsManager
 ⋮----
 constructor(
-    private readonly defaultTemplatesDir = AIDER_DESK_DEFAULT_PROMPTS_DIR,
-    private readonly globalPromptsDir = AIDER_DESK_GLOBAL_PROMPTS_DIR,
+    private readonly defaultTemplatesDir = REACTOR_DEFAULT_PROMPTS_DIR,
+    private readonly globalPromptsDir = REACTOR_GLOBAL_PROMPTS_DIR,
 )
 ⋮----
 public async init(): Promise<void>
@@ -10033,7 +10033,7 @@ import logger from '@/logger';
 import { initManagers } from '@/managers';
 import { performStartUp } from '@/start-up';
 import { Store } from '@/store';
-import { AIDER_DESK_DATA_DIR } from '@/constants';
+import { REACTOR_DATA_DIR } from '@/constants';
 import { getDefaultProjectSettings } from '@/utils';
 import { ModelManager } from '@/models';
 import { AgentProfileManager } from '@/agent';
@@ -10056,7 +10056,7 @@ const updateProgress = (
 ⋮----
 // Initialize managers first
 ⋮----
-// Check for AIDER_DESK_PROJECTS environment variable and add projects
+// Check for REACTOR_PROJECTS environment variable and add projects
 ⋮----
 // Only run main if this file is being executed directly (not imported for testing)
 
@@ -10235,7 +10235,7 @@ import { homedir } from 'os';
 ⋮----
 import { SettingsData, AgentProfile } from '@common/types';
 ⋮----
-import { AIDER_DESK_AGENTS_DIR } from '@/constants';
+import { REACTOR_AGENTS_DIR } from '@/constants';
 import logger from '@/logger';
 import { deriveDirName } from '@/utils';
 ⋮----
@@ -10521,7 +10521,7 @@ import { fileExists } from '@common/utils';
 import treeKill from 'tree-kill';
 import { DEFAULT_AIDER_MAIN_MODEL } from '@common/agent';
 ⋮----
-import { AIDER_DESK_CONNECTOR_DIR, AIDER_DESK_PROJECT_RULES_DIR, AIDER_DESK_TASKS_DIR, PID_FILES_DIR, PYTHON_COMMAND, SERVER_PORT } from '@/constants';
+import { REACTOR_CONNECTOR_DIR, REACTOR_PROJECT_RULES_DIR, REACTOR_TASKS_DIR, PID_FILES_DIR, PYTHON_COMMAND, SERVER_PORT } from '@/constants';
 import { Connector } from '@/connector';
 import logger from '@/logger';
 import { Store } from '@/store';
@@ -10623,7 +10623,7 @@ import { Task } from '@/task';
 import { isDirectory, isFileIgnored } from '@/utils';
 import { ANSWER_RESPONSE_START_TAG, extractPromptContextFromToolResult, THINKING_RESPONSE_STAR_TAG } from '@/agent/utils';
 import { migrateContextV1toV2 } from '@/task/migrations/v1-to-v2';
-import { AIDER_DESK_TASKS_DIR } from '@/constants';
+import { REACTOR_TASKS_DIR } from '@/constants';
 ⋮----
 export class ContextManager
 ⋮----
@@ -10823,12 +10823,12 @@ import type { SimpleGit } from 'simple-git';
 ⋮----
 import { getAllFiles, isValidProjectFile } from '@/utils/file-system';
 import {
-  AIDER_DESK_TASKS_DIR,
-  AIDER_DESK_TODOS_FILE,
+  REACTOR_TASKS_DIR,
+  REACTOR_TODOS_FILE,
   WORKTREE_BRANCH_PREFIX,
-  AIDER_DESK_PROJECT_RULES_DIR,
-  AIDER_DESK_GLOBAL_RULES_DIR,
-  AIDER_DESK_TMP_DIR,
+  REACTOR_PROJECT_RULES_DIR,
+  REACTOR_GLOBAL_RULES_DIR,
+  REACTOR_TMP_DIR,
 } from '@/constants';
 import { Agent, AgentProfileManager, McpManager } from '@/agent';
 import { Connector } from '@/connector';
@@ -12241,7 +12241,7 @@ import { existsSync } from 'fs';
 import { ConflictResolutionFileContext, MergeState, RebaseState, Worktree, WorktreeAheadCommits, WorktreeUncommittedFiles } from '@common/types';
 ⋮----
 import { execWithShellPath, withLock } from '@/utils';
-import { AIDER_DESK_TASKS_DIR } from '@/constants';
+import { REACTOR_TASKS_DIR } from '@/constants';
 import logger from '@/logger';
 ⋮----
 export class GitError extends Error
@@ -12746,7 +12746,7 @@ import { DataManager } from '@/data-manager';
 import { TerminalManager } from '@/terminal/terminal-manager';
 import logger from '@/logger';
 import { getDefaultProjectSettings, getEffectiveEnvironmentVariable, getFilePathSuggestions, isProjectPath, isValidPath, scrapeWeb } from '@/utils';
-import { AIDER_DESK_TMP_DIR, LOGS_DIR } from '@/constants';
+import { REACTOR_TMP_DIR, LOGS_DIR } from '@/constants';
 import { EventManager } from '@/events';
 import { isElectron } from '@/app';
 ⋮----
@@ -12998,7 +12998,7 @@ import { app, BrowserWindow, dialog, Menu, session, shell } from 'electron';
 ⋮----
 import icon from '../../resources/icon.png?asset';
 ⋮----
-import { AIDER_DESK_DATA_DIR, HEADLESS_MODE } from '@/constants';
+import { REACTOR_DATA_DIR, HEADLESS_MODE } from '@/constants';
 import { ProgressWindow } from '@/progress-window';
 import { setupIpcHandlers } from '@/ipc-handlers';
 import { performStartUp, UpdateProgressData } from '@/start-up';
@@ -13475,12 +13475,12 @@ import { delay } from '@common/utils';
 import logger from '@/logger';
 import { getCurrentPythonLibVersion, getLatestPythonLibVersion, getPythonVenvBinPath } from '@/utils';
 import {
-  AIDER_DESK_DATA_DIR,
+  REACTOR_DATA_DIR,
   SETUP_COMPLETE_FILENAME,
   PYTHON_VENV_DIR,
-  AIDER_DESK_CONNECTOR_DIR,
+  REACTOR_CONNECTOR_DIR,
   RESOURCES_DIR,
-  AIDER_DESK_MCP_SERVER_DIR,
+  REACTOR_MCP_SERVER_DIR,
   UV_EXECUTABLE,
 } from '@/constants';
 import { isDev } from '@/app';
@@ -14175,7 +14175,7 @@ export const DiffViewer = (
 ⋮----
 // eslint-disable-next-line no-console
 ⋮----
-Please report an issue in https://github.com/hotovo/reactor/issues.
+Please report an issue in https://github.com/DrOlu/reactor/issues.
 ⋮----
 // No error, but no diff file (e.g., identical content)
 
@@ -25232,8 +25232,8 @@ File: src/renderer/progress.html
 ================
 File: electron-builder.yml
 ================
-appId: com.hotovo.reactor
-productName: reactor
+appId: ng.hyperspace.reactor
+productName: Reactor
 directories:
   buildResources: build
 files:
@@ -25302,7 +25302,7 @@ linux:
     - target: AppImage
     - target: deb
     - target: rpm
-  maintainer: Hotovo
+  maintainer: Hyperspace <reactor@hyperspace.ng>
   category: Utility
   extraResources:
     - from: ./resources/linux
@@ -25334,14 +25334,17 @@ File: package.json
 ================
 {
   "name": "reactor",
-  "version": "0.49.0-dev",
-  "description": "Aider desktop application wrapper",
+  "version": "0.50.1",
+  "description": "Reactor - AI-powered coding assistant desktop application",
   "main": "./out/main/index.js",
-  "author": "Hotovo",
-  "homepage": "https://aiderdesk.hotovo.com",
+  "author": {
+    "name": "Hyperspace",
+    "email": "reactor@hyperspace.ng"
+  },
+  "homepage": "https://github.com/DrOlu/reactor",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hotovo/reactor.git"
+    "url": "https://github.com/DrOlu/reactor.git"
   },
   "scripts": {
     "format": "prettier --write .",
