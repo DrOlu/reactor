@@ -1,6 +1,6 @@
 # Changelog
 
-## [UNRELEASED]
+## [0.49.0]
 
 - improved responsiveness for small screen devices with mobile-first layouts for task sidebar, task bar, and prompt field components
 - added full-screen task sidebar on mobile with toggle button
@@ -18,6 +18,7 @@
 - properly interrupting determine task state action after agent completion
 - max output tokens for models is now undefined by default
 - added handoff feature to create a new task with focus from current conversation
+- changes made in mdx files are now properly showing up in diff viewer
 
 ## [0.48.1]
 
